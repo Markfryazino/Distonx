@@ -1,0 +1,74 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{mathtext}
+\usepackage[english,russian]{babel}
+\usepackage[T2A]{fontenc}	
+\usepackage{amssymb} 
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}	
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage{xcolor}
+\definecolor{linkcolor}{HTML}{799B03}
+\definecolor{urlcolor}{HTML}{799B03} 
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+\usepackage[center]{titlesec}
+
+\begin{document}
+\subsection*{Общее:}
+	
+\href{https://github.com/binance-exchange/binance-official-api-docs/blob/master/web-socket-streams.md}{Ссылка на информацию о всех доступных данных.}
+
+Если что, в паре BTC/USDT quote asset - это USDT, base asset - это BTC. Market Taker - тот, кто выставляет рыночный ордер.
+
+\textbf{Крипты:} USDT, BTC - точно, а также варианты: ETH, BCH, LTC, BNB и другие, надо выбрать. Соответственно, всего пар $C_n^2$. В идеале нам нужно, наверное, около четырех крипт.
+
+\textbf{Это не те данные, которые мы непосредственно будем запихивать в нейросеть! Это те данные, которые мы получаем через api, а их обработка - это еще отдельная тема.}
+
+\subsection*{Для каждой пары:}
+\begin{itemize}
+	\item \textbf{<symbol>@aggTrade и <symbol>@trade:} \\
+	Эти потоки в реальном времени кидают информацию о сделках, тут нужно думать, какие фичи можно выделять. Пока могу накидать такие:
+	\begin{itemize}
+		\item $MinuteQuantity/SecondQuantity$ - объемы продаж в base asset за соответствующую единицу времени.
+		\item $MinuteVolume/SecondVolume$ - объем продаж за соответствующую единицу времени в quote asset.
+		\item $MinuteNumber/SecondNumber$ - количество сделок за единицу времени.
+		\item $SecondMinimumPrice/SecondMaximumPrice/$\\$SecondMeanPrice$ - статистики цены за секунду.
+		\item $LastPrice$ - последняя цена.
+	\end{itemize}
+	А также можно добавить процент сделок, где покупателем выступал Market Taker, процент объема, а еще много чего еще. Дело в том, что мы получаем информацию обо всех сделках за единицу времени, а нам нужно их отобразить в фиксированный набор полей. Предложения принимаются.
+	\item \textbf{<symbol>@kline\_<interval>:} \\
+	<interval> - это 1m, 3m, 5m, 15m и так далее вплоть, наверное, до 12h. Поток возвращает разные метрики цены за соответствующий интервал. Для каждого интервала:
+	\begin{itemize}
+		\item $TradeNumber$ - число сделок.
+		\item $OpenPrice/ClosePrice/HighPrice/LowPrice$ - статистики цены.
+		\item $BaseVolume$ - объем продаж в base asset.
+		\item $QuoteVolume$ - объем продаж в quote asset.
+		\item $TakerBaseVolume/TakerQuoteVolume$ - объем продаж среди сделок, когда покупателем выступает Market Taker.
+	\end{itemize}
+	\item \textbf{<symbol>@ticker:}\\
+	Этот поток возвращает статистику по паре о последних 24 часах.
+	\begin{itemize}
+		\item $PriceChange/PriceChangePercent$ - изменение цены.
+		\item $WeightedAveragePrice$ - средняя цена.
+		\item $FirstPrice/LastPrice$ - цена первой и последней сделок. 
+		\item $LastQuantity$ - объем последней сделки.
+		\item $BestBidPrice/BestAskPrice$ - цены лучшего бида и аска.
+		\item $BestBidQuantity/BestAskQuantity$ - объемы лучшего бида и аска.
+		\item $TradeNumber$ - число сделок.
+	\end{itemize}
+	\item \textbf{<symbol>@depth<levels>@100ms:}\\
+	Этот поток каждые 100ms кидает изменения ордербука. <levels> возьмем 10 или 20.
+	\begin{itemize}
+		\item $BidPrice\text{<}level\text{>}/BidQuantity\text{<}level\text{>}$ - цена и объем ордера продажи, находящегося на определенном уровне ордербука.
+		\item $AskPrice\text{<}level\text{>}/AskQuantity\text{<}level\text{>}$ - цена и объем ордеров покупки.
+	\end{itemize}
+	Тут еще можно докинуть какие-нибудь изменения ордербука за последнюю секунду, например.
+\end{itemize}
+
+Как-то так.
+
+\end{document}
