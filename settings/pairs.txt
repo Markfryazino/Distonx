@@ -1,0 +1,11 @@
+btcusdt
+ethusdt
+bchusdt
+bnbusdt
+ltcusdt
+ethbtc
+bchbtc
+bnbbtc
+ltcbtc
+bchbnb
+ltcbnb
