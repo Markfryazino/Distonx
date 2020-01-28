@@ -63,19 +63,6 @@ class DataCatcher:
             for stream in streams:
                 self.streams.append(pair + stream)
 
-    # Функция, которая изначально заполняет все поля нулями (иначе размер словаря будет меняться
-    # на ходу, а это некруто. Поскольку пока я только ticker обработал, инициализируем только им
-    def init_storage(self):
-        # TICKER
-        ticker_fields = ['PriceChange', 'PriceChangePercent', 'WeightedAveragePrice', 'FirstPrice',
-                         'LastPrice', 'LastQuantity', 'BestBidPrice', 'BestAskPrice',
-                         'BestBidQuantity', 'BestAskQuantity', 'TradeNumber']
-        for pair in self.pairs:
-            for field in ticker_fields:
-                self.storage[pair + '_ticker_' + field] = -1.
-
-        # TODO - все остальное
-
     # saver - объект, который сохраняет наши данные. Должен иметь функцию get_data(self, manager_dict) -
     # эту функцию мы будем вызывать каждую секунду
     # timeout - через сколько вырубать обработку, period - длина одного тика
@@ -89,7 +76,6 @@ class DataCatcher:
         self.pairs = []
         self.streams = []
         self.init_streams()
-        self.init_storage()
         self.start_time = time.time()
         self.client = init_client()
 
@@ -119,8 +105,8 @@ class DataCatcher:
         self.socket_process.start()
 
         # Ждем немного, чтобы все успело прийти
-        logging.debug('waiting for 5 seconds')
-        time.sleep(5.)
+        logging.debug('waiting for 10 seconds')
+        time.sleep(10.)
         logging.debug('started transferring data')
         if self.timeout:
             timeout_timer = threading.Timer(self.timeout, self.finish)
