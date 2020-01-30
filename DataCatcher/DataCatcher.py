@@ -129,7 +129,7 @@ class DataCatcher:
 
         # Смотри комментарии к kline_callback
         for pair in self.pairs:
-            self.storage[pair + '_kline_update_time'] = time.time() - \
+            self.storage[pair + '_kline_update_time'] = time.time() * 1000 - \
                                                         self.storage[pair + '_kline_update_time']
 
         logging.info('giving data, time ' + str(time.time()))
