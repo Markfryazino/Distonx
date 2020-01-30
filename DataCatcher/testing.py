@@ -2,7 +2,7 @@ from DataCatcher import DataCatcher
 from DataSaver import TxtDataSaver
 import logging
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 saver = TxtDataSaver()
 catcher = DataCatcher(saver, 5., 1.)

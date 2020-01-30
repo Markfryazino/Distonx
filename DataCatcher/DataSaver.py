@@ -14,6 +14,6 @@ class TxtDataSaver:
             self.data[-1][key] = manager_dict[key]
 
     def save_data(self, file_name):
-        logging.debug('saving data to ' + file_name)
+        logging.info('saving data to ' + file_name)
         with open(file_name, 'w') as file:
             file.write(str(self.data))
