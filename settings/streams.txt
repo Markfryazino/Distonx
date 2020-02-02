@@ -1,4 +1,2 @@
-@trade
 @kline_1m
-@ticker
 @depth20

@@ -24,23 +24,6 @@ def init_client():
 
 # Собственно, класс, который осуществляет весь функционал
 class DataCatcher:
-    # Функция, которая ничего не делает (для потоков, обработку которых мы еще не написали)
-    def pass_query(self, query):
-        pass
-
-    # Функция для обработки потока ticker
-    def ticker_callback(self, query):
-        pair = query['stream'].split('@')[0]
-        logging.debug('got ticker query for ' + pair)
-        name_dict = {'price_change': 'p', 'price_change_percent': 'P', 'weighted_average_price': 'w',
-                     'first_price': 'x', 'last_price': 'c', 'last_quantity': 'Q',
-                     'best_bid_price': 'b', 'best_ask_price': 'a', 'best_bid_quantity': 'B',
-                     'best_ask_quantity': 'A', 'trade_number': 'n'}
-
-        # Записываем в наш словарь с данными
-        for here in name_dict:
-            self.storage[pair + '_ticker_' + here] = query['data'][name_dict[here]]
-
     # Функция для обработки потока ордерной книги
     def orderbook_callback(self, query):
         pair = query['stream'].split('@')[0]
@@ -75,8 +58,7 @@ class DataCatcher:
         stream_type = query['stream'].split('@')[1]
         # Ниже мы определяем, какой поток какая функция обрабатывает и запускаем
         # обработку в отдельном потоке, чтобы не тормозить
-        stream_callbacks = {'trade': self.pass_query, 'kline_1m': self.kline_callback,
-                            'ticker': self.ticker_callback, 'depth20': self.orderbook_callback}
+        stream_callbacks = {'kline_1m': self.kline_callback, 'depth20': self.orderbook_callback}
         action = threading.Thread(target=stream_callbacks[stream_type], args=(query,))
         action.start()
 
