@@ -5,7 +5,7 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 saver = db()
-timeout = 5.  # 20 часов
+timeout = 86000  # сколько секунд до переподключения
 period = 1.
 
 while True:
