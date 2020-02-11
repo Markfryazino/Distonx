@@ -43,9 +43,6 @@ class DataCatcher:
         if not query['data']['k']['x']:
             return
 
-        # Вот тут update_time имеет двойное значение: обычно мы в нем храним время закрытия свечи, но
-        # в момент передачи данных мы изменяем это значение на время, прошедшее с последнего обновления
-        # данных о свече.
         logging.info('got kline query for ' + pair)
         name_dict = {'open_price': 'o', 'close_price': 'c', 'high_price': 'h', 'low_price': 'l',
                      'base_volume': 'v', 'trade_number': 'n', 'quote_volume': 'q',
@@ -111,7 +108,7 @@ class DataCatcher:
 
         # Смотри комментарии к kline_callback
         for pair in self.pairs:
-            self.storage[pair + '_kline_update_time'] = time.time() * 1000 - \
+            self.storage[pair + '_kline_time_since_update'] = time.time() * 1000 - \
                                                         self.storage[pair + '_kline_update_time']
         self.storage['time'] = time.time()
 

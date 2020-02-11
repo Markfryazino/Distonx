@@ -7,7 +7,7 @@ class TxtDataSaver:
     def __init__(self):
         self.data = []
 
-    def get_data(self, manager_dict):
+    def push_data(self, manager_dict):
         self.data.append({})
         self.data[-1]['time'] = time.time()
         for key in manager_dict:

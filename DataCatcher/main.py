@@ -3,7 +3,7 @@ from database_saver import db
 import logging
 
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(filename="logs.log", level=logging.INFO)
 saver = db()
 timeout = 86000  # сколько секунд до переподключения
 period = 1.
