@@ -1,8 +1,8 @@
-import multiprocessing
-import threading
-from binance.client import Client
-from binance.websockets import BinanceSocketManager
-import time
+import multiprocessing 
+import threading 
+from binance.client import Client 
+from binance.websockets import BinanceSocketManager 
+import time 
 import logging
 
 
@@ -119,9 +119,9 @@ class DataCatcher:
         logging.info('started listening')
         self.socket_process.start()
 
-        # Ждем 1 минуту, чтобы все успело прийти
-        logging.info('waiting for 1 minute')
-        time.sleep(60.)
+        # Ждем 2 минуты, чтобы все успело прийти
+        logging.info('waiting for 2 minutes')
+        time.sleep(120.)
         logging.info('started transferring data')
         if self.timeout:
             timeout_timer = threading.Timer(self.timeout, self.finish)

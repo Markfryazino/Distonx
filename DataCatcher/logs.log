@@ -1,0 +1,72 @@
+INFO:root:version: (('5.7.29-0ubuntu0.18.04.1',),)
+INFO:root:starting new catcher
+INFO:root:DataCatcher initialization successful
+INFO:root:started listening
+INFO:root:waiting for 1 minute
+INFO:root:got kline query for btcusdt
+INFO:root:got kline query for ethusdt
+INFO:root:got kline query for ethbtc
+INFO:root:got kline query for bnbbtc
+INFO:root:got kline query for ltcusdt
+INFO:root:got kline query for bnbusdt
+INFO:root:got kline query for ltcbtc
+INFO:root:got kline query for bchbnb
+INFO:root:got kline query for bchbtc
+INFO:root:got kline query for bchusdt
+INFO:root:got kline query for ltcbnb
+INFO:root:started transferring data
+INFO:root:got kline query for bnbusdt
+INFO:root:got kline query for ethusdt
+INFO:root:got kline query for ethbtc
+INFO:root:got kline query for bnbbtc
+INFO:root:got kline query for btcusdt
+INFO:root:got kline query for ltcbtc
+INFO:root:got kline query for bchusdt
+INFO:root:got kline query for ltcusdt
+INFO:root:got kline query for bchbnb
+INFO:root:got kline query for bchbtc
+INFO:root:got kline query for ltcbnb
+INFO:root:got kline query for ethbtc
+INFO:root:got kline query for ethusdt
+INFO:root:got kline query for bnbusdt
+INFO:root:got kline query for btcusdt
+INFO:root:got kline query for ltcusdt
+INFO:root:got kline query for bnbbtc
+INFO:root:got kline query for bchbtc
+INFO:root:got kline query for bchusdt
+INFO:root:got kline query for ltcbtc
+INFO:root:got kline query for bchbnb
+INFO:root:got kline query for ltcbnb
+INFO:root:got kline query for ethbtc
+INFO:root:got kline query for bnbusdt
+INFO:root:got kline query for ethusdt
+INFO:root:got kline query for btcusdt
+INFO:root:got kline query for bnbbtc
+INFO:root:got kline query for ltcbtc
+INFO:root:got kline query for bchbnb
+INFO:root:got kline query for bchbtc
+INFO:root:got kline query for bchusdt
+INFO:root:got kline query for ltcusdt
+INFO:root:got kline query for ltcbnb
+INFO:root:got kline query for ethusdt
+INFO:root:got kline query for bnbusdt
+INFO:root:got kline query for bnbbtc
+INFO:root:got kline query for btcusdt
+INFO:root:got kline query for ethbtc
+INFO:root:got kline query for ltcusdt
+INFO:root:got kline query for ltcbtc
+INFO:root:got kline query for bchbnb
+INFO:root:got kline query for bchbtc
+INFO:root:got kline query for bchusdt
+INFO:root:got kline query for ltcbnb
+INFO:root:got kline query for bnbusdt
+INFO:root:got kline query for ethbtc
+INFO:root:got kline query for btcusdt
+INFO:root:got kline query for ltcbtc
+INFO:root:got kline query for ethusdt
+INFO:root:got kline query for bnbbtc
+INFO:root:got kline query for bchbtc
+INFO:root:got kline query for ltcusdt
+INFO:root:got kline query for bchbnb
+INFO:root:got kline query for bchusdt
+INFO:root:got kline query for ltcbnb
