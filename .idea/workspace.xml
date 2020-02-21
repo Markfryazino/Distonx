@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bed73f2b-6bf5-40e0-bbb1-c2b26e71f32a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/DataCatcher/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/paper_testing/Agent.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/paper_testing/Environment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Distonx.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Distonx.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/DataCatcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataCatcher/DataCatcher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataCatcher/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper_testing/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/paper_testing/Agent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper_testing/Environment.py" beforeDir="false" afterPath="$PROJECT_DIR$/paper_testing/Environment.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,7 +39,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowPython Console.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/paper_testing/Environment.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -52,7 +55,7 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="database_saver" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="paper testing" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Distonx" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -60,12 +63,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/DataCatcher" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/paper_testing" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DataCatcher/database_saver.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/paper_testing/Environment.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -76,7 +79,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.database_saver" />
+        <item itemvalue="Python.paper testing" />
       </list>
     </recent_temporary>
   </component>

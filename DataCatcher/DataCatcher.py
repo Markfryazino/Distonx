@@ -74,7 +74,7 @@ class DataCatcher:
     # saver - объект, который сохраняет наши данные. Должен иметь функцию push_data(self, manager_dict) -
     # эту функцию мы будем вызывать каждую секунду
     # timeout - через сколько вырубать обработку, period - длина одного тика
-    def __init__(self, saver, timeout=None, period=1.):
+    def __init__(self, saver=None, timeout=None, period=1.):
         self.timeout = timeout
         self.period = period
         self.manager = multiprocessing.Manager()
@@ -115,7 +115,7 @@ class DataCatcher:
         logging.info('giving data, time ' + str(time.time()))
         self.data_saver.push_data(self.storage)
 
-    def start(self):
+    def start(self, write_data=True):
         logging.info('started listening')
         self.socket_process.start()
 
@@ -127,5 +127,7 @@ class DataCatcher:
             timeout_timer = threading.Timer(self.timeout, self.finish)
             timeout_timer.start()
 
-        self.timer.start()
+        if write_data:
+            self.timer.start()
+
         self.socket_process.join()

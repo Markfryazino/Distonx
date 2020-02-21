@@ -1,5 +1,5 @@
-from DataCatcher import DataCatcher, RepeatTimer
-from database_saver import db
+from .DataCatcher import DataCatcher, RepeatTimer
+from .database_saver import db
 import logging
 
 

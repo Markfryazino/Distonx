@@ -1,4 +1,4 @@
-from DataCatcher import DataCatcher
+from DataCatcher.DataCatcher import DataCatcher
 import multiprocessing
 
 
@@ -7,6 +7,7 @@ class Environment:
         self.agent = agent
         self.emulator = emulator
         self.logger = logger
+        self.catcher = DataCatcher()
 
     def step(self, data):
         query = self.agent.form_query(data)
@@ -16,4 +17,4 @@ class Environment:
         step_params = {'query': query, 'delta_balance': agent_response['delta_balance'],
                        'balance': agent_response['balance']}
         if self.logger:
-            logger.update(step_params)
+            self.logger.update(step_params)

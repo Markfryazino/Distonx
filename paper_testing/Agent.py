@@ -8,7 +8,7 @@ class Agent:
 
     def form_query(self, data):
         processed_data = self.preprocessor(data)
-        query = model(processed_data)
+        query = self.model(processed_data)
         return query
 
     def get_response(self, response):
