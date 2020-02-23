@@ -10,5 +10,5 @@ period = 1.
 
 while True:
     logging.info('starting new catcher')
-    catcher = DataCatcher(saver.push_data, timeout, period)
+    catcher = DataCatcher(saver=saver, timeout=timeout, period=period)
     catcher.start()

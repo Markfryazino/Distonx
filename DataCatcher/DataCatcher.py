@@ -27,7 +27,6 @@ class DataCatcher:
     # Функция для обработки потока ордерной книги
     def orderbook_callback(self, query):
         pair = query['stream'].split('@')[0]
-        logging.debug('got orderbook query for ' + pair)
 
         # Записываем все, что можем вытащить из ордербука, в хранилище
         for side in ('asks', 'bids'):
@@ -43,7 +42,6 @@ class DataCatcher:
         if not query['data']['k']['x']:
             return
 
-        logging.debug('got kline query for ' + pair)
         name_dict = {'open_price': 'o', 'close_price': 'c', 'high_price': 'h', 'low_price': 'l',
                      'base_volume': 'v', 'trade_number': 'n', 'quote_volume': 'q',
                      'taker_base_volume': 'V', 'taker_quote_volume': 'Q', 'update_time': 'T'}
@@ -73,13 +71,17 @@ class DataCatcher:
 
     # saver - функция, вызываемая каждую секунду и сохраняющая данные
     # timeout - через сколько вырубать обработку, period - длина одного тика
-    def __init__(self, saver=None, timeout=None, period=1.):
+    def __init__(self, saver=None, storage=None, timeout=23 * 60 * 60, period=1., process_inside=True):
         self.timeout = timeout
         self.period = period
         self.manager = multiprocessing.Manager()
 
         # storage - куда мы сохраняем данные
-        self.storage = self.manager.dict()
+        if storage is None:
+            self.storage = self.manager.dict()
+        else:
+            self.storage = storage
+
         self.pairs = []
         self.streams = []
         self.init_streams()
@@ -89,7 +91,9 @@ class DataCatcher:
         # Сокет, который все слушает (запускаем в отдельном процессе)
         self.main_socket = BinanceSocketManager(self.client)
         self.connection_key = self.main_socket.start_multiplex_socket(self.streams, self.general_callback)
-        self.socket_process = multiprocessing.Process(target=self.main_socket.run)
+        self.process_inside = process_inside
+        if self.process_inside:
+            self.socket_process = multiprocessing.Process(target=self.main_socket.run)
         self.data_saver = saver
         self.timer = RepeatTimer(self.period, self.give_data)
         logging.info('DataCatcher initialization successful')
@@ -111,22 +115,21 @@ class DataCatcher:
                                                         self.storage[pair + '_kline_update_time']
         self.storage['time'] = time.time()
 
-        logging.debug('giving data, time ' + str(time.time()))
-        self.data_saver(self.storage)
+        self.data_saver.push_data(self.storage)
 
-    def start(self, write_data=True):
+    def start(self):
         logging.info('started listening')
-        self.socket_process.start()
+        if self.process_inside:
+            self.socket_process.start()
 
         # Ждем 2 минуты, чтобы все успело прийти
         logging.info('waiting for 2 minutes')
         time.sleep(120.)
         logging.info('started transferring data')
-        if self.timeout:
-            timeout_timer = threading.Timer(self.timeout, self.finish)
-            timeout_timer.start()
+        timeout_timer = threading.Timer(self.timeout, self.finish)
+        timeout_timer.start()
 
-        if write_data:
+        if self.data_saver is not None:
             self.timer.start()
 
         self.socket_process.join()
