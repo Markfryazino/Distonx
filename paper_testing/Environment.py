@@ -22,23 +22,22 @@ class Environment:
         logging.info('initialization successful')
 
     def step(self, data):
-        query = self.agent.form_query(data)
-        emulator_response = self.emulator.handle(query, data)
+        query, balance = self.agent.form_query(data)
+        emulator_response = self.emulator.handle(query, balance, data)
         agent_response = self.agent.get_response(emulator_response)
 
-        step_params = {'query': query, 'delta_balance': agent_response['delta_balance'],
-                       'balance': agent_response['balance']}
+        step_params = {'query': query, 'emulator_response': emulator_response,
+                       'agent_response': agent_response}
         if self.logger:
-            self.logger.update(step_params)
+            self.logger.step(step_params)
 
     def start(self):
         self.catcher_process.start()
         logging.info('waiting for 4 minutes for DataCatcher to wake up')
         time.sleep(240.)
+        logging.info('starting action')
 
         while self.catcher_process.is_alive():
             start_time = time.time()
             self.step(self.current_data)
-            end_time = time.time()
-            if end_time < start_time + self.period * 1000.:
-                time.sleep((start_time + self.period * 1000 - end_time) / 1000.)
+            logging.debug('step done, time ' + str((time.time() - start_time)/1000.) + ' seconds')

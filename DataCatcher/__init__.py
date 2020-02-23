@@ -1,2 +1,2 @@
-from DataCatcher import DataCatcher
-from database_saver import db
+from .DataCatcher import DataCatcher
+from .database_saver import db

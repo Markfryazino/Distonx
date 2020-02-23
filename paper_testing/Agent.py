@@ -1,15 +1,11 @@
-
-
 class Agent:
-    def __init__(self, balance, preprocessor, model):
+    def __init__(self, balance, model):
         self.balance = balance
-        self.preprocessor = preprocessor
         self.model = model
 
     def form_query(self, data):
-        processed_data = self.preprocessor(data)
-        query = self.model(processed_data)
-        return query
+        query = self.model(data, self.balance)
+        return query, self.balance
 
     def get_response(self, response):
         delta_balance = response['delta_balance']

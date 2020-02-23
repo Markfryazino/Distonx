@@ -1,0 +1,6 @@
+usdt
+btc
+ltc
+eth
+bch
+bnb

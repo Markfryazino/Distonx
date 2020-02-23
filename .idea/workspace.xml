@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bed73f2b-6bf5-40e0-bbb1-c2b26e71f32a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/paper_testing/Emulator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/paper_testing/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/stupid_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/testing_paper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/write_all_logger.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataCatcher/DataCatcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataCatcher/DataCatcher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataCatcher/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataCatcher/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataCatcher/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataCatcher/testing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/paper_testing/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/paper_testing/Agent.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/paper_testing/Environment.py" beforeDir="false" afterPath="$PROJECT_DIR$/paper_testing/Environment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trash/stock_market_emulator.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/trash/stock_market_emulator.ipynb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

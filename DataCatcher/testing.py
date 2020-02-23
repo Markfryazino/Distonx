@@ -1,5 +1,5 @@
-from DataCatcher import DataCatcher
-from DataSaver import TxtDataSaver
+from .DataCatcher import DataCatcher
+from .DataSaver import TxtDataSaver
 import logging
 
 logging.basicConfig(level=logging.INFO)

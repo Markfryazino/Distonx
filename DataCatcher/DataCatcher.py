@@ -43,7 +43,7 @@ class DataCatcher:
         if not query['data']['k']['x']:
             return
 
-        logging.info('got kline query for ' + pair)
+        logging.debug('got kline query for ' + pair)
         name_dict = {'open_price': 'o', 'close_price': 'c', 'high_price': 'h', 'low_price': 'l',
                      'base_volume': 'v', 'trade_number': 'n', 'quote_volume': 'q',
                      'taker_base_volume': 'V', 'taker_quote_volume': 'Q', 'update_time': 'T'}
@@ -96,7 +96,7 @@ class DataCatcher:
 
     # Функция завершения работы
     def finish(self):
-        logging.debug('finishing listening')
+        logging.info('finishing listening')
         self.timer.cancel()
         self.main_socket.stop_socket(self.connection_key)
         self.main_socket.close()
@@ -111,7 +111,7 @@ class DataCatcher:
                                                         self.storage[pair + '_kline_update_time']
         self.storage['time'] = time.time()
 
-        logging.info('giving data, time ' + str(time.time()))
+        logging.debug('giving data, time ' + str(time.time()))
         self.data_saver(self.storage)
 
     def start(self, write_data=True):
