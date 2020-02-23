@@ -4,7 +4,7 @@ import random
 class RandomModel:
     def __init__(self):
         with open('../settings/pairs.txt') as file:
-            self.pairs = file.readlines()
+            self.pairs = [a[:-1] for a in file.readlines()]
 
     def __call__(self, data, balance):
         query = {}

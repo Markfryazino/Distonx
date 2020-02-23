@@ -1,13 +1,14 @@
-from .stupid_model import RandomModel
-from .write_all_logger import WriteAllLogger
+from stupid_model import RandomModel
+from write_all_logger import WriteAllLogger
+import logging
 from paper_testing import Agent, Emulator, Environment
-import random
 
 
 with open('../settings/cryptos.txt') as file:
-    cryptos = file.readlines()
+    cryptos = [a[:-1] for a in file.readlines()]
 balance = {asset: 0. for asset in cryptos}
 balance['usdt'] = 200.
+logging.basicConfig(level=logging.INFO)
 
 model = RandomModel()
 agent = Agent(balance, model)

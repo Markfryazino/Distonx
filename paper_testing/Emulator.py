@@ -54,5 +54,5 @@ class Emulator:
         self.fee = 0.001
         self.orders = {}
         self.spend_till_end = True
-        with open('min_order_size_and_step.txt', 'r') as f:
+        with open('../settings/min_order_size_and_step.txt', 'r') as f:
             self.min_order_size = eval(f.read())
