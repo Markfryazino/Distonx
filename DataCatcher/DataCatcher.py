@@ -71,8 +71,7 @@ class DataCatcher:
             for stream in streams:
                 self.streams.append(pair + stream)
 
-    # saver - объект, который сохраняет наши данные. Должен иметь функцию push_data(self, manager_dict) -
-    # эту функцию мы будем вызывать каждую секунду
+    # saver - функция, вызываемая каждую секунду и сохраняющая данные
     # timeout - через сколько вырубать обработку, period - длина одного тика
     def __init__(self, saver=None, timeout=None, period=1.):
         self.timeout = timeout
@@ -113,7 +112,7 @@ class DataCatcher:
         self.storage['time'] = time.time()
 
         logging.info('giving data, time ' + str(time.time()))
-        self.data_saver.push_data(self.storage)
+        self.data_saver(self.storage)
 
     def start(self, write_data=True):
         logging.info('started listening')

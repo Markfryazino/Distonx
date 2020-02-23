@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bed73f2b-6bf5-40e0-bbb1-c2b26e71f32a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Distonx.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Distonx.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataCatcher/DataCatcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataCatcher/DataCatcher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataCatcher/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataCatcher/main.py" afterDir="false" />
