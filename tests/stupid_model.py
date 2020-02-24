@@ -1,6 +1,7 @@
 import random
 
 
+# Модель 1 - Ariana
 class RandomModel:
     def __init__(self):
         with open('../settings/pairs.txt') as file:

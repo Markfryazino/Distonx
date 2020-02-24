@@ -5,6 +5,7 @@ from paper_testing import Agent, Emulator, Environment
 
 logging.basicConfig(level=logging.DEBUG)
 
+open("../trash/Ariana_output.txt", "w").close()
 with open('../settings/cryptos.txt') as file:
     cryptos = [a[:-1] for a in file.readlines()]
 

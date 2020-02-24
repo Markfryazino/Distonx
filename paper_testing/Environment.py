@@ -26,8 +26,9 @@ class Environment:
         for pair in pairs:
             for i in range(20):
                 for side in ('bids', 'asks'):
-                    price = self.current_data[pair + '_' + side + '_orderbook_price_level_' + str(i)]
-                    quantity = self.current_data[pair + '_' + side + '_orderbook_quantity_level_' + str(i)]
+                    price = float(self.current_data[pair + '_' + side + '_orderbook_price_level_' + str(i)])
+                    quantity = float(self.current_data[pair + '_' + side + '_orderbook_quantity_level_'
+                                                       + str(i)])
                     orderbook[pair][side].append([price, quantity])
 
         return orderbook
@@ -55,11 +56,15 @@ class Environment:
         timeout_timer = threading.Timer(self.timeout, self.finish)
         timeout_timer.start()
 
+        ncalls, all_time = 0, 0.
+
         while not self.time_to_stop:
             start_time = time.time()
             self.step(self.current_data)
-            logging.debug('step done, time ' + str((time.time() - start_time)) + ' seconds')
+            ncalls += 1
+            all_time += time.time() - start_time
 
         self.socket_process.terminate()
         self.socket_process.join()
+        logging.info(str(ncalls) + ' steps done, mean time ' + str(all_time / ncalls))
         logging.info('terminating process')
