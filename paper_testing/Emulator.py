@@ -54,7 +54,6 @@ class Emulator:
         for pair in query_dict:
             self.orders = orders[pair]
             self.balance = [internal_balance[pair[:3]], internal_balance[pair[3:]]]
-            # print(self.balance)
             if query_dict[pair] == 0:
                 continue
             if query_dict[pair] < 0:
