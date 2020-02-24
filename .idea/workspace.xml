@@ -2,13 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bed73f2b-6bf5-40e0-bbb1-c2b26e71f32a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/auxiliary/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auxiliary/authentication.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.DataCatcher.py.swp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataCatcher/DataCatcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataCatcher/DataCatcher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataCatcher/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataCatcher/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataCatcher/testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataCatcher/testing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper_testing/Environment.py" beforeDir="false" afterPath="$PROJECT_DIR$/paper_testing/Environment.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings/cryptos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/settings/cryptos.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/testing_paper.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/testing_paper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/database_saver.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataCatcher/database_saver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/top_secret/api_secret.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/top_secret/key.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/trash/.ipynb_checkpoints/Binance_api_test-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/trash/.ipynb_checkpoints/Binance_api_test-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trash/.ipynb_checkpoints/kline testing-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/trash/.ipynb_checkpoints/kline testing-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trash/.ipynb_checkpoints/multiprocessing-new-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/trash/.ipynb_checkpoints/multiprocessing-new-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trash/.ipynb_checkpoints/multiprocessing-start-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/trash/.ipynb_checkpoints/multiprocessing-start-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trash/.ipynb_checkpoints/stock_market_emulator-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/trash/.ipynb_checkpoints/stock_market_emulator-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trash/Binance_api_test.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/trash/Binance_api_test.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trash/Feature engineering.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/trash/Feature engineering.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trash/kline testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/trash/kline testing.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trash/multiprocessing-new.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/trash/multiprocessing-new.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trash/multiprocessing-start.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/trash/multiprocessing-start.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trash/stock_market_emulator.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/trash/stock_market_emulator.ipynb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

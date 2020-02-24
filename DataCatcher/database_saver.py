@@ -1,10 +1,12 @@
 import pymysql
 import logging
+from auxiliary import auth_db
 
 
 class db:
     def __init__(self):
-        self.connection = pymysql.connect('45.12.18.221', 'hinser', 'anime1', 'cryptodata', autocommit=True)
+        address, login, password = auth_db()
+        self.connection = pymysql.connect(address, login, password, 'cryptodata', autocommit=True)
         self.cursor = self.connection.cursor()
         self.cursor.execute("SELECT VERSION()")
         logging.info('version: ' + str(self.cursor.fetchall()))
@@ -18,7 +20,6 @@ class db:
         splitted_pairs = self.split_to_pairs(dct)
         for pairname in splitted_pairs:
             request = self.form_request(time, pairname, splitted_pairs[pairname])
-            #  print(request)
             self.execute(request)
 
     def split_to_pairs(self, dct):

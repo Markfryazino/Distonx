@@ -1,10 +1,6 @@
 # Distonx
 A chance for us to become billionaires.
 
-DataCatcher - папочка со скриптами, нужными для вытаскивания данных с Binance
+Plans are to build a deep reinforcement model capable of (almost) high-frequency cryptocurrency trading on Binance stock market. At the moment project is in development.
 
-В settings лежат всякие настраиваемые параметры вроде списка пар
-
-trash - папка для экспериментов и исследования
-
-top_secret - данные аккаунта
+In old commits you can see key and password of our Binance API token and database. They're outdated, so don't try to exploit that.

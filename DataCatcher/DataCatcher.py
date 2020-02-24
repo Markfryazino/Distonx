@@ -2,7 +2,8 @@ import multiprocessing
 import threading 
 from binance.client import Client 
 from binance.websockets import BinanceSocketManager 
-import time 
+import time
+from auxiliary import auth_api
 import logging
 
 
@@ -15,10 +16,7 @@ class RepeatTimer(threading.Timer):
 
 # Инициализация клиента, нужного для взаимодействия с биржей
 def init_client():
-    with open('../top_secret/key.txt') as file:
-        key = file.readlines()[0][:-1]
-    with open('../top_secret/api_secret.txt') as file:
-        secret = file.readlines()[0][:-1]
+    key, secret = auth_api()
     return Client(key, secret)
 
 
