@@ -1,3 +1,6 @@
+import math
+
+
 class Emulator:
     # эта функция вызывается когда мы хотим купить amount монеток по текущей цене
     def make_buy_order(self, pair, amount):
@@ -20,7 +23,7 @@ class Emulator:
         return [capital * (1 - self.fee), -res_amount + amount]
 
     # если хотим продать amount монеток по рыночной цене - нам сюда
-   def make_sell_order(self, pair, amount):
+    def make_sell_order(self, pair, amount):
         if not self.spend_till_end and self.balance[0] < amount:
             return [self.balance[0], 0]
         capital = 0
@@ -46,15 +49,22 @@ class Emulator:
         internal_balance = balance.copy()
         result = dict()
         for pair in query_dict:
+            result[pair[:3]] = 0
+            result[pair[3:]] = 0
+        for pair in query_dict:
             self.orders = orders[pair]
             self.balance = [internal_balance[pair[:3]], internal_balance[pair[3:]]]
             # print(self.balance)
             if query_dict[pair] < 0:
-                result[pair] = self.make_buy_order(pair, -query_dict[pair])
+                res = self.make_buy_order(pair, -query_dict[pair])
+                result[pair[:3]] += res[0]
+                result[pair[3:]] += res[1]
             elif query_dict[pair] > 0:
-                result[pair] = self.make_sell_order(pair, query_dict[pair])
-            internal_balance[pair[:3]] += result[pair][0]
-            internal_balance[pair[3:]] += result[pair][1]
+                res = self.make_sell_order(pair, query_dict[pair])
+                result[pair[:3]] += res[0]
+                result[pair[3:]] += res[1]
+            internal_balance[pair[:3]] += result[pair[:3]]
+            internal_balance[pair[3:]] += result[pair[3:]]
         return {'delta_balance': result}  # возвращаем словарик с изменениями в количестве валюты А и В
 
     def __init__(self, ):
