@@ -54,7 +54,8 @@ class Emulator:
         for pair in query_dict:
             self.orders = orders[pair]
             self.balance = [internal_balance[pair[:3]], internal_balance[pair[3:]]]
-            # print(self.balance)
+            if query_dict[pair] == 0:
+                continue
             if query_dict[pair] < 0:
                 res = self.make_buy_order(pair, -query_dict[pair])
                 result[pair[:3]] += res[0]
@@ -63,8 +64,8 @@ class Emulator:
                 res = self.make_sell_order(pair, query_dict[pair])
                 result[pair[:3]] += res[0]
                 result[pair[3:]] += res[1]
-            internal_balance[pair[:3]] += result[pair[:3]]
-            internal_balance[pair[3:]] += result[pair[3:]]
+            internal_balance[pair[:3]] += res[0]
+            internal_balance[pair[3:]] += res[1]
         return {'delta_balance': result}  # возвращаем словарик с изменениями в количестве валюты А и В
 
     def __init__(self, ):
