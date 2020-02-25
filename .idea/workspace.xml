@@ -2,13 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bed73f2b-6bf5-40e0-bbb1-c2b26e71f32a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/data_collection.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auxiliary/authentication.py" beforeDir="false" afterPath="$PROJECT_DIR$/auxiliary/authentication.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper_testing/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/paper_testing/Agent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper_testing/Environment.py" beforeDir="false" afterPath="$PROJECT_DIR$/paper_testing/Environment.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/stupid_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/stupid_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/testing_paper.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/testing_paper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/write_all_logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/write_all_logger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/.idea/DataCatcher.iml" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/.idea/DataCatcher.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/DataCatcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/DataCatcher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/DataSaver.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/DataSaver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/database_saver.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/database_saver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/logs.log" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/logs.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/testing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/venv/bin/activate" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/venv/bin/activate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/venv/bin/activate.csh" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/venv/bin/activate.csh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/venv/bin/activate.fish" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/venv/bin/activate.fish" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/venv/bin/python" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/venv/bin/python" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/venv/bin/python3" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/venv/bin/python3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/venv/bin/python3.7" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/venv/bin/python3.7" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/venv/lib64" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/venv/lib64" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataCatcher/venv/pyvenv.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/venv/pyvenv.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auxiliary/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/auxiliary/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auxiliary/authentication.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/auxiliary/authentication.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper_testing/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/paper_testing/Agent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper_testing/Emulator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/paper_testing/Emulator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper_testing/Environment.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/paper_testing/Environment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper_testing/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/paper_testing/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/stupid_model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/testing_paper.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/write_all_logger.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/trash/Ariana_output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/trash/Ariana_output.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,8 +66,13 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowPython Console.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/testing_paper.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/test.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/code" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -63,12 +95,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/testing_paper.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
