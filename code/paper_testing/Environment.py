@@ -17,13 +17,15 @@ class Environment:
         self.timeout = timeout
         self.period = period
         self.time_to_stop = False
+
+        with open('settings/pairs.txt') as file:
+            self.pairs = [a[:-1] for a in file.readlines()]
+
         logging.info('Environment initialization successful')
 
     def form_orderbook(self):
-        with open('settings/pairs.txt') as file:
-            pairs = [a[:-1] for a in file.readlines()]
-        orderbook = {pair: {'bids': [], 'asks': []} for pair in pairs}
-        for pair in pairs:
+        orderbook = {pair: {'bids': [], 'asks': []} for pair in self.pairs}
+        for pair in self.pairs:
             for i in range(20):
                 for side in ('bids', 'asks'):
                     price = float(self.current_data[pair + '_' + side + '_orderbook_price_level_' + str(i)])
