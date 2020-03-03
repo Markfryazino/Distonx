@@ -51,8 +51,8 @@ class Environment:
 
     def start(self):
         self.socket_process.start()
-        logging.info('waiting for 2 minutes for DataCatcher to wake up')
-        time.sleep(120.)
+        logging.info('waiting for 80 seconds for DataCatcher to wake up')
+        time.sleep(80.)
         logging.info('starting action')
 
         timeout_timer = threading.Timer(self.timeout, self.finish)

@@ -12,8 +12,9 @@ def test_emu():
 
     balance = {asset: 0. for asset in cryptos}
     balance['usdt'] = 200.
-    balance['btc'] = 1.
-    query = {'btcusdt': -0.5, 'ltcusdt': -1}
+    balance['btc'] = 1
+    balance['ltc'] = 1
+    query = {'btcusdt': 0.001}
     emulator = EmulatorV2()
     response = emulator.handle(query, balance, orderbook1)
     print(response)

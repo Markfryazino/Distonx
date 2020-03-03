@@ -15,8 +15,8 @@ class ArianaModel:
             quote = pair[3:]
             amount = decision
             if decision == 1:
-                amount = -random.uniform(0, balance[base])
+                amount = random.uniform(0, 0.01)
             if decision == 2:
-                amount = random.uniform(0, balance[quote])
+                amount = -random.uniform(0, balance[base])
             query[pair] = amount
         return query
