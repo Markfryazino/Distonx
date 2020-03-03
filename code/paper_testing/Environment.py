@@ -6,7 +6,7 @@ import time
 
 
 class Environment:
-    def __init__(self, agent, emulator, logger=None, timeout=None, period=1.):
+    def __init__(self, agent, emulator, logger=None, timeout=None, period=10.):
         self.agent = agent
         self.emulator = emulator
         self.logger = logger
@@ -64,7 +64,10 @@ class Environment:
             start_time = time.time()
             self.step(self.current_data)
             ncalls += 1
-            all_time += time.time() - start_time
+            time_spent = time.time() - start_time
+            all_time += time_spent
+            if all_time < self.period:
+                time.sleep(self.period - time_spent)
 
         self.socket_process.terminate()
         self.socket_process.join()

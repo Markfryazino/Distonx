@@ -4,7 +4,7 @@ import logging
 from code.paper_testing import Agent, EmulatorV2, Environment
 
 
-def paper_test_1(start_balance=200., time=30.):
+def paper_test_1(start_balance=200., time=60.):
     logging.basicConfig(level=logging.DEBUG)
 
     open("trash/Ariana_output.txt", "w").close()

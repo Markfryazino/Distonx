@@ -5,7 +5,7 @@ class EmulatorV2:
     def __init__(self, spend_till_end=True, pay_in_bnb=True):
         self.spend_till_end = spend_till_end
         self.bnb_fee = 0.00075
-        self.fee = 0.000
+        self.fee = 0.001
         self.pay_in_bnb = pay_in_bnb
         self.balance = {}
         self.orders = {}
@@ -17,14 +17,14 @@ class EmulatorV2:
         with open('settings/min_order_size_and_step.txt', 'r') as f:
             self.min_order_size = eval(f.read())
 
-    # TODO - реализовать более умно
-    def count_in_usdt(self, balance):
+    def count_in_usdt(self):
         result = 0.
-        for name in balance.keys():
+        for name in self.balance.keys():
             if name == 'usdt':
-                result += balance[name]
+                result += self.balance[name]
             else:
-                result += self.orders[name + 'usdt']['asks'][0][0] * balance[name]
+                base, quote = self.make_sell_base_order(name + 'usdt', self.balance[name], False)
+                result += quote
         return result
 
     # TODO - прикрутить оплату в BNB
@@ -77,12 +77,13 @@ class EmulatorV2:
                 spent += can_spend
                 return bought - self.compute_commission(pair[:3], bought), -spent
 
-    def make_sell_base_order(self, pair, amount):
+    def make_sell_base_order(self, pair, amount, to_round=True):
         if (not amount) or (not self.spend_till_end and amount > self.balance[pair[:3]]):
             return 0., 0.
 
         amount = min(amount, self.balance[pair[:3]])
-        amount = self.round(pair, amount)
+        if to_round:
+            amount = self.round(pair, amount)
         eager_to_spend = amount
         bought = 0.
 
@@ -98,6 +99,7 @@ class EmulatorV2:
     def handle(self, query_dict, balance, orders):
         self.balance = balance.copy()
         self.orders = orders
+        old_usdt = self.count_in_usdt()
 
         for query in query_dict.keys():
             delta_first = 0
@@ -110,4 +112,7 @@ class EmulatorV2:
             self.balance[query[3:]] += delta_second
 
         delta_balance = {name: self.balance[name] - balance[name] for name in self.balance.keys()}
-        return {'delta_balance': delta_balance, 'delta_usdt': self.count_in_usdt(delta_balance)}
+        new_usdt = self.count_in_usdt()
+
+        return {'delta_balance': delta_balance, 'old_usdt': old_usdt, 'new_usdt': new_usdt,
+                'delta_usdt': new_usdt - old_usdt}
