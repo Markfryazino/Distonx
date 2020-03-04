@@ -101,15 +101,17 @@ class EmulatorV2:
         self.orders = orders
         old_usdt = self.count_in_usdt()
 
-        for query in query_dict.keys():
+        for pair, (action, amount) in query_dict.items():
             delta_first = 0
             delta_second = 0
-            if query_dict[query] > 0:
-                delta_first, delta_second = self.make_buy_base_order(query, query_dict[query])
-            elif query_dict[query] < 0:
-                delta_first, delta_second = self.make_sell_base_order(query, -query_dict[query])
-            self.balance[query[:3]] += delta_first
-            self.balance[query[3:]] += delta_second
+            if action == 'bb':
+                delta_first, delta_second = self.make_buy_base_order(pair, amount)
+            elif action == 'sb':
+                delta_first, delta_second = self.make_sell_base_order(pair, amount)
+            elif action == 'sq':
+                delta_first, delta_second = self.make_sell_quote_order(pair, amount)
+            self.balance[pair[:3]] += delta_first
+            self.balance[pair[3:]] += delta_second
 
         delta_balance = {name: self.balance[name] - balance[name] for name in self.balance.keys()}
         new_usdt = self.count_in_usdt()
