@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bed73f2b-6bf5-40e0-bbb1-c2b26e71f32a" name="Default Changelist" comment="">
+    <list default="true" id="bed73f2b-6bf5-40e0-bbb1-c2b26e71f32a" name="Default Changelist" comment="Сделал виртуальную среду, куда закинул pymysql; создал папке DataCatcher файл database_saver.py, который надо заимпортить в нужный файл. (оно работает)">
+      <change afterPath="$PROJECT_DIR$/trash/test_get_info.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Distonx.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Distonx.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/paper_testing/Emulator_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/paper_testing/Emulator_v2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/test_files/stupid_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/test_files/stupid_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/test_files/test_Emulator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/test_files/test_Emulator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trash/Ariana_output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/trash/Ariana_output.txt" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,13 +30,25 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JupyterTrust" id="047564f6-a017-44f4-a276-73772c5bd7be" />
   <component name="ProjectId" id="1XG2MxttHeJT1E2fMrNupR286i9" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowPython Console.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/test.py" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -47,19 +56,7 @@
       <recent name="$PROJECT_DIR$/code" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.test_get_info">
     <configuration name="paper testing" type="PythonConfigurationType" factoryName="Python">
       <module name="Distonx" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -82,6 +79,33 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test_get_info" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Distonx" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/trash" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/trash/test_get_info.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.test_get_info" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -95,6 +119,8 @@
       <updated>1580658066928</updated>
       <workItem from="1581110558922" duration="10688000" />
       <workItem from="1581343819258" duration="450000" />
+      <workItem from="1583516772426" duration="2181000" />
+      <workItem from="1583521719904" duration="276000" />
     </task>
     <task id="LOCAL-00001" summary="Сделал виртуальную среду, куда закинул pymysql; создал папке DataCatcher файл database_saver.py, который надо заимпортить в нужный файл. (оно работает)">
       <created>1581196481187</created>
@@ -126,7 +152,43 @@
     <MESSAGE value="Сделал виртуальную среду, куда закинул pymysql; создал папке DataCatcher файл database_saver.py, который надо заимпортить в нужный файл. (оно работает)" />
     <option name="LAST_COMMIT_MESSAGE" value="Сделал виртуальную среду, куда закинул pymysql; создал папке DataCatcher файл database_saver.py, который надо заимпортить в нужный файл. (оно работает)" />
   </component>
+  <component name="WindowStateProjectService">
+    <state x="0" y="27" width="1910" height="1053" key="CommitChangelistDialog2" timestamp="1583518921789">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="0" y="27" width="1910" height="1053" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1583518921789" />
+    <state width="1864" height="463" key="GridCell.Tab.0.bottom" timestamp="1583521957949">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1864" height="463" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1583521957949" />
+    <state width="1864" height="463" key="GridCell.Tab.0.center" timestamp="1583521957948">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1864" height="463" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1583521957948" />
+    <state width="1864" height="463" key="GridCell.Tab.0.left" timestamp="1583521957946">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1864" height="463" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1583521957946" />
+    <state width="1864" height="463" key="GridCell.Tab.0.right" timestamp="1583521957948">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1864" height="463" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1583521957948" />
+    <state x="325" y="101" width="1269" height="912" key="SettingsEditor" timestamp="1583516946673">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="325" y="101" width="1269" height="912" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1583516946673" />
+    <state x="540" y="342" key="com.intellij.ide.util.TipDialog" timestamp="1583521720231">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="540" y="342" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1583521720231" />
+    <state x="539" y="45" width="840" height="1034" key="search.everywhere.popup" timestamp="1583518208424">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="539" y="45" width="840" height="1034" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1583518208424" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Distonx$test_get_info.coverage" NAME="test_get_info Coverage Results" MODIFIED="1583521954871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/trash" />
     <SUITE FILE_PATH="coverage/Distonx$database_saver.coverage" NAME="database_saver Coverage Results" MODIFIED="1581195938940" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DataCatcher" />
+    <SUITE FILE_PATH="coverage/Distonx$paper_testing.coverage" NAME="paper testing Coverage Results" MODIFIED="1583517796016" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
