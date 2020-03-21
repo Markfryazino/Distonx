@@ -39,10 +39,7 @@ class EmulatorV2:
 
     def check_if_enough(self, pair, amount):
         min_val = self.min_order_size[pair][1]
-        if amount < min_val:
-            return 0.
-        else:
-            return amount
+        return amount >= min_val
 
     def quote_to_base(self, pair, amount):
         if not amount:
@@ -125,6 +122,9 @@ class EmulatorV2:
             elif action == 'sell quote':
                 base_to_buy = self.quote_to_base(pair, amount)
                 delta_first, delta_second = self.make_buy_base_order(pair, base_to_buy)
+
+            if not self.check_if_enough(pair, abs(delta_second)):
+                delta_first, delta_second = 0, 0
 
             self.balance[pair[:3]] += delta_first
             self.balance[pair[3:]] += delta_second
