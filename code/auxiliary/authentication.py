@@ -1,10 +1,10 @@
-import logging
-
-
-def auth_api():
-    token = input('Enter api token: ')
-    secret = input('Enter secret key: ')
-    return token, secret
+def auth_api(level='READ'):
+    if level == 'READ':
+        return 'distonx', 'nevermind'
+    else:
+        token = input('Enter api token: ')
+        secret = input('Enter secret key: ')
+        return token, secret
 
 
 def auth_db():

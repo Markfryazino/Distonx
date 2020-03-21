@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bed73f2b-6bf5-40e0-bbb1-c2b26e71f32a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/code/auxiliary/splitting.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/test_files/Bonnie_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/trash/.ipynb_checkpoints/look_on_data-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/trash/look_on_data.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/paper_testing/Emulator_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/paper_testing/Emulator_v2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/test_files/stupid_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/test_files/stupid_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/test_files/test_Emulator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/test_files/test_Emulator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trash/Ariana_output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/trash/Ariana_output.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/DataCatcher/database_saver.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/DataCatcher/database_saver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/DataCatcher/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/auxiliary/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/auxiliary/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/auxiliary/authentication.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/auxiliary/authentication.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,7 +42,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowPython Console.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/test.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/data_collection.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -59,7 +62,28 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.data">
+    <configuration name="data" type="PythonConfigurationType" factoryName="Python">
+      <module name="Distonx" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/Anaconda/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_collection.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="paper testing" type="PythonConfigurationType" factoryName="Python">
       <module name="Distonx" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -82,6 +106,10 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.paper testing" />
+      <item itemvalue="Python.data" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
