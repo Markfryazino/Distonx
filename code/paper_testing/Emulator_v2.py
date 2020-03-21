@@ -29,53 +29,68 @@ class EmulatorV2:
 
     # TODO - прикрутить оплату в BNB
     def compute_commission(self, name, amount):
-        return amount * self.fee
+        return self.fee * amount
 
-    # TODO - реализовать
+    # TODO - добавить проверку достаточности quote volume
     def round(self, pair, amount):
-        return amount
+        min_val = self.min_order_size[pair][0]
+        new_val = (amount // min_val) * min_val
+        return new_val
 
-    def make_sell_quote_order(self, pair, amount):
-        if (not amount) or (not self.spend_till_end and amount > self.balance[pair[3:]]):
-            return 0., 0.
+    def check_if_enough(self, pair, amount):
+        min_val = self.min_order_size[pair][1]
+        if amount < min_val:
+            return 0.
+        else:
+            return amount
 
-        amount = min(amount, self.balance[pair[3:]])
-        amount = self.round(pair, amount)
-        eager_to_spend = amount
+    def quote_to_base(self, pair, amount):
+        if not amount:
+            return 0.
+
         bought = 0.
-
         for idx, (price, quantity) in enumerate(self.orders[pair]['asks']):
             if amount > price * quantity:
                 amount -= price * quantity
                 bought += quantity
             else:
                 bought += amount / price
-                bought -= self.compute_commission(pair[:3], bought)
-                return bought, -eager_to_spend
+                return bought
 
     def make_buy_base_order(self, pair, amount):
         if not amount:
             return 0., 0.
+        amount = self.round(pair, amount)
         can_spend = self.balance[pair[3:]]
         spent = 0.
         bought = 0.
         for idx, (price, quantity) in enumerate(self.orders[pair]['asks']):
-            if (amount > quantity) and (can_spend > price * quantity):
-                spent += price * quantity
-                can_spend -= price * quantity
+            if (amount > quantity) and (can_spend > price * quantity +
+                                        self.compute_commission(pair[3:], price * quantity)):
+                spent += price * quantity + self.compute_commission(pair[3:], price * quantity)
+                can_spend -= price * quantity + self.compute_commission(pair[3:], price * quantity)
                 bought += quantity
                 amount -= quantity
-            elif (amount < quantity) and (can_spend >= amount * price):
+            elif (amount < quantity) and \
+                    (can_spend >= amount * price + self.compute_commission(pair[3:], amount * price)):
                 bought += amount
-                spent += amount * price
-                return bought - self.compute_commission(pair[:3], bought), -spent
-            elif ((amount >= quantity) and (can_spend < quantity * price)) or \
-                    ((amount < quantity) and (can_spend < amount * price)):
+                spent += amount * price + self.compute_commission(pair[3:], amount * price)
+                return bought, -spent
+            elif ((amount >= quantity) and
+                  (can_spend < quantity * price + self.compute_commission(pair[3:], quantity * price))) \
+                    or ((amount < quantity) and (can_spend < amount * price +
+                                                 self.compute_commission(pair[3:], amount * price))):
                 if not self.spend_till_end:
                     return 0., 0.
-                bought += can_spend / price
-                spent += can_spend
-                return bought - self.compute_commission(pair[:3], bought), -spent
+
+                to_buy = can_spend / price
+                for i in range(10):
+                    com = self.compute_commission(pair[3:], to_buy * price)
+                    to_buy = (can_spend - com) / price
+                spent += to_buy * price + self.compute_commission(pair[3:], to_buy * price)
+                bought += to_buy
+
+                return bought, -spent
 
     def make_sell_base_order(self, pair, amount, to_round=True):
         if (not amount) or (not self.spend_till_end and amount > self.balance[pair[:3]]):
@@ -90,10 +105,9 @@ class EmulatorV2:
         for idx, (price, quantity) in enumerate(self.orders[pair]['bids']):
             if amount > quantity:
                 amount -= quantity
-                bought += price * quantity
+                bought += price * quantity - self.compute_commission(pair[3:], price * quantity)
             else:
-                bought += price * amount
-                bought -= self.compute_commission(pair[3:], bought)
+                bought += price * amount - self.compute_commission(pair[3:], price * amount)
                 return -eager_to_spend, bought
 
     def handle(self, query_dict, balance, orders):
@@ -104,12 +118,14 @@ class EmulatorV2:
         for pair, (action, amount) in query_dict.items():
             delta_first = 0
             delta_second = 0
-            if action == 'bb':
+            if action == 'buy base':
                 delta_first, delta_second = self.make_buy_base_order(pair, amount)
-            elif action == 'sb':
+            elif action == 'sell base':
                 delta_first, delta_second = self.make_sell_base_order(pair, amount)
-            elif action == 'sq':
-                delta_first, delta_second = self.make_sell_quote_order(pair, amount)
+            elif action == 'sell quote':
+                base_to_buy = self.quote_to_base(pair, amount)
+                delta_first, delta_second = self.make_buy_base_order(pair, base_to_buy)
+
             self.balance[pair[:3]] += delta_first
             self.balance[pair[3:]] += delta_second
 

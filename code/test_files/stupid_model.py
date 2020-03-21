@@ -14,12 +14,14 @@ class ArianaModel:
             base = pair[:3]
             quote = pair[3:]
             amount = decision
-            if decision == 1:
-                amount = ('bb', random.uniform(0, 0.01))
+            if decision == 0:
+                amount = ('nothing', 0.)
+            elif decision == 1:
+                amount = ('buy base', random.uniform(0, 0.01))
             elif decision == 2:
-                amount = ('sb', random.uniform(0, balance[base]))
+                amount = ('sell base', random.uniform(0, balance[base]))
             elif decision == 3:
-                amount = ('sq', random.uniform(0, balance[quote]))
+                amount = ('sell quote', random.uniform(0, balance[quote]))
             query[pair] = amount
         return query
 
