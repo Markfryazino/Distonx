@@ -45,6 +45,12 @@ class db:
         ans = self.cursor.fetchall()
         return ans
 
+    def get_data_by_id(self, id): #возвращает строку по id
+        request = 'SELECT * FROM  `distonx` WHERE id = ' + str(id)
+        self.execute(request)
+        ans = self.cursor.fetchone()
+        return ans
+
     def get_columns_names(
             self):  # Возвращает названия всех стлобцов в том порядке, в котором они находятся в БД
         request = 'SHOW columns FROM distonx;'

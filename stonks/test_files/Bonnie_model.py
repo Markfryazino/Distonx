@@ -1,4 +1,4 @@
-from code.auxiliary import split_to_pairs
+from ..auxiliary import split_to_pairs
 
 
 class BonnieModel:

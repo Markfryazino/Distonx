@@ -23,7 +23,7 @@ class EmulatorV2:
             if name == 'usdt':
                 result += self.balance[name]
             else:
-                base, quote = self.make_sell_base_order(name + 'usdt', self.balance[name], False)
+                base, quote = self.make_sell_base_order(name + 'usdt', self.balance[name], False, False)
                 result += quote
         return result
 
@@ -89,7 +89,7 @@ class EmulatorV2:
 
                 return bought, -spent
 
-    def make_sell_base_order(self, pair, amount, to_round=True):
+    def make_sell_base_order(self, pair, amount, to_round=True, use_comm=True):
         if (not amount) or (not self.spend_till_end and amount > self.balance[pair[:3]]):
             return 0., 0.
 
@@ -102,9 +102,9 @@ class EmulatorV2:
         for idx, (price, quantity) in enumerate(self.orders[pair]['bids']):
             if amount > quantity:
                 amount -= quantity
-                bought += price * quantity - self.compute_commission(pair[3:], price * quantity)
+                bought += price * quantity - use_comm * self.compute_commission(pair[3:], price * quantity)
             else:
-                bought += price * amount - self.compute_commission(pair[3:], price * amount)
+                bought += price * amount - use_comm * self.compute_commission(pair[3:], price * amount)
                 return -eager_to_spend, bought
 
     def handle(self, query_dict, balance, orders):
