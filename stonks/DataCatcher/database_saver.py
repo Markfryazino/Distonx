@@ -1,7 +1,7 @@
 import pymysql
 import logging
-from code.auxiliary import auth_db
-from code.auxiliary import split_to_pairs
+from ..auxiliary import auth_db
+from ..auxiliary import split_to_pairs
 
 
 class db:
@@ -51,4 +51,3 @@ class db:
         self.execute(request)
         ans = list([i[0] for i in self.cursor.fetchall()])
         return ans
-    

@@ -3,7 +3,7 @@ import threading
 from binance.client import Client 
 from binance.websockets import BinanceSocketManager 
 import time
-from code.auxiliary import auth_api
+from ..auxiliary import auth_api
 import logging
 
 

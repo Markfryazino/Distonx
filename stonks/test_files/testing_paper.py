@@ -1,7 +1,7 @@
 from .stupid_model import ArianaModel
 from .write_all_logger import WriteAllLogger
 import logging
-from code.paper_testing import Agent, EmulatorV2, Environment
+from ..paper_testing import Agent, EmulatorV2, Environment
 
 
 def paper_test_1(start_balance=200., time=60.):

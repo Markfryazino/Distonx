@@ -1,4 +1,4 @@
-from code.DataCatcher import DataCatcher
+from ..DataCatcher import DataCatcher
 import multiprocessing
 import threading
 import logging
