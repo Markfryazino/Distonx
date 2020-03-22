@@ -31,3 +31,24 @@ class db:
             keys += ", `" + str(key) + "`"
             values += ", '" + str(value) + "'"
         return base_start + keys + ") VALUES (" + values + ");"
+
+    def get_data_from_DB(self, time_start, time_finish,
+                         pair_name=''):  # возвращает тапл таплов. Один тапл = одна строчка в БД
+        if pair_name:
+            request = 'SELECT * FROM `distonx` WHERE time >= ' + str(
+                time_start) + ' AND time < ' + str(
+                time_finish) + ' AND currency_pair = ' + '"' + pair_name + '"'
+        else:
+            request = 'SELECT * FROM `distonx` WHERE time >= ' + str(
+                time_start) + ' AND time < ' + str(time_finish)
+        self.execute(request)
+        ans = self.cursor.fetchall()
+        return ans
+
+    def get_columns_names(
+            self):  # Возвращает названия всех стлобцов в том порядке, в котором они находятся в БД
+        request = 'SHOW columns FROM distonx;'
+        self.execute(request)
+        ans = list([i[0] for i in self.cursor.fetchall()])
+        return ans
+    
