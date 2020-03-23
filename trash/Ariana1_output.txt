@@ -1,0 +1,36 @@
+Query: {}
+delta_balance: {'usdt': 0.0, 'btc': 0.0, 'ltc': 0.0, 'eth': 0.0, 'bch': 0.0, 'bnb': 0.0}
+new balance: {'usdt': 200.0, 'btc': 0.0, 'ltc': 0.0, 'eth': 0.0, 'bch': 0.0, 'bnb': 0.0}
+usdt balance: 200.0
+delta usdt: 0.0
+
+Query: {}
+delta_balance: {'usdt': 0.0, 'btc': 0.0, 'ltc': 0.0, 'eth': 0.0, 'bch': 0.0, 'bnb': 0.0}
+new balance: {'usdt': 200.0, 'btc': 0.0, 'ltc': 0.0, 'eth': 0.0, 'bch': 0.0, 'bnb': 0.0}
+usdt balance: 200.0
+delta usdt: 0.0
+
+Query: {'btcusdt': ('sell base', 0.0)}
+delta_balance: {'usdt': 0.0, 'btc': 0.0, 'ltc': 0.0, 'eth': 0.0, 'bch': 0.0, 'bnb': 0.0}
+new balance: {'usdt': 200.0, 'btc': 0.0, 'ltc': 0.0, 'eth': 0.0, 'bch': 0.0, 'bnb': 0.0}
+usdt balance: 200.0
+delta usdt: 0.0
+
+Query: {}
+delta_balance: {'usdt': 0.0, 'btc': 0.0, 'ltc': 0.0, 'eth': 0.0, 'bch': 0.0, 'bnb': 0.0}
+new balance: {'usdt': 200.0, 'btc': 0.0, 'ltc': 0.0, 'eth': 0.0, 'bch': 0.0, 'bnb': 0.0}
+usdt balance: 200.0
+delta usdt: 0.0
+
+Query: {}
+delta_balance: {'usdt': 0.0, 'btc': 0.0, 'ltc': 0.0, 'eth': 0.0, 'bch': 0.0, 'bnb': 0.0}
+new balance: {'usdt': 200.0, 'btc': 0.0, 'ltc': 0.0, 'eth': 0.0, 'bch': 0.0, 'bnb': 0.0}
+usdt balance: 200.0
+delta usdt: 0.0
+
+Query: {'btcusdt': ('sell base', 0.0)}
+delta_balance: {'usdt': 0.0, 'btc': 0.0, 'ltc': 0.0, 'eth': 0.0, 'bch': 0.0, 'bnb': 0.0}
+new balance: {'usdt': 200.0, 'btc': 0.0, 'ltc': 0.0, 'eth': 0.0, 'bch': 0.0, 'bnb': 0.0}
+usdt balance: 200.0
+delta usdt: 0.0
+

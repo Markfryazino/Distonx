@@ -1,0 +1,180 @@
+Query: {'btcusdt': ('nothing', 0.0), 'ethusdt': ('sell base', 0.0), 'bchusdt': ('sell quote', 143.62403274004262), 'bnbusdt': ('sell base', 0.0), 'ltcusdt': ('sell quote', 173.73683088251377), 'ethbtc': ('sell quote', 0.0), 'bchbtc': ('nothing', 0.0), 'bnbbtc': ('sell base', 0.0), 'ltcbtc': ('nothing', 0.0), 'bchbnb': ('sell quote', 0.0), 'ltcbnb': ('nothing', 0.0)}
+delta_balance: {'usdt': -200.0, 'btc': 0.0, 'ltc': 1.4279122083913542, 'eth': 0.0, 'bch': 0.6438200000000001, 'bnb': 0.0}
+new balance: {'usdt': 0.0, 'btc': 0.0, 'ltc': 1.4279122083913542, 'eth': 0.0, 'bch': 0.6438200000000001, 'bnb': 0.0}
+usdt balance: 199.67532305603197
+delta usdt: -0.32467694396802926
+
+Query: {'btcusdt': ('sell base', 0.0), 'ethusdt': ('nothing', 0.0), 'bchusdt': ('sell base', 0.6215896198146691), 'bnbusdt': ('sell base', 0.0), 'ltcusdt': ('nothing', 0.0), 'ethbtc': ('nothing', 0.0), 'bchbtc': ('sell base', 0.6256456687127389), 'bnbbtc': ('sell quote', 0.0), 'ltcbtc': ('nothing', 0.0), 'bchbnb': ('sell base', 0.3052250006981732), 'ltcbnb': ('sell base', 0.9787484811161776)}
+delta_balance: {'usdt': 138.3246976392, 'btc': 0.0007570102320000001, 'ltc': -0.978, 'eth': 0.0, 'bch': -0.64358, 'bnb': 3.1391716859999996}
+new balance: {'usdt': 138.3246976392, 'btc': 0.0007570102320000001, 'ltc': 0.44991220839135426, 'eth': 0.0, 'bch': 0.00024000000000001798, 'bnb': 3.1391716859999996}
+usdt balance: 199.2866049338109
+delta usdt: -0.21912981180150837
+
+Query: {'btcusdt': ('sell base', 0.000451234512822772), 'ethusdt': ('nothing', 0.0), 'bchusdt': ('sell base', 0.00021260150965933666), 'bnbusdt': ('sell quote', 6.766249474840718), 'ltcusdt': ('nothing', 0.0), 'ethbtc': ('sell base', 0.0), 'bchbtc': ('sell quote', 0.00015208229654239464), 'bnbbtc': ('sell quote', 0.0007566154409483685), 'ltcbtc': ('nothing', 0.0), 'bchbnb': ('sell base', 0.0002168433760052757), 'ltcbnb': ('sell base', 0.26512226024238006)}
+delta_balance: {'usdt': 0.0, 'btc': -0.0007570102320000001, 'ltc': -0.265, 'eth': 0.0, 'bch': 0.004, 'bnb': 1.1773501187266553}
+new balance: {'usdt': 138.3246976392, 'btc': 0.0, 'ltc': 0.18491220839135425, 'eth': 0.0, 'bch': 0.004240000000000018, 'bnb': 4.316521804726655}
+usdt balance: 199.17298743972668
+delta usdt: -0.03347961922980858
+
+Query: {'btcusdt': ('sell base', 0.0), 'ethusdt': ('sell quote', 107.6575147821849), 'bchusdt': ('sell base', 0.0028784727253196225), 'bnbusdt': ('sell base', 2.2876457324406116), 'ltcusdt': ('nothing', 0.0), 'ethbtc': ('sell quote', 0.0), 'bchbtc': ('sell base', 0.0023645908103730197), 'bnbbtc': ('sell base', 1.9195521486379297), 'ltcbtc': ('nothing', 0.0), 'bchbnb': ('nothing', 0.0), 'ltcbnb': ('sell quote', 4.117534879777599)}
+delta_balance: {'usdt': -79.99691441089999, 'btc': 0.00360438201, 'ltc': 0.03924104604698453, 'eth': 0.80203, 'bch': 0.0, 'bnb': -4.316521804726655}
+new balance: {'usdt': 58.32778322830001, 'btc': 0.00360438201, 'ltc': 0.22415325443833878, 'eth': 0.80203, 'bch': 0.004240000000000018, 'bnb': 0.0}
+usdt balance: 198.94627561498527
+delta usdt: -0.193076032301434
+
+Query: {'btcusdt': ('sell quote', 22.824357857681477), 'ethusdt': ('sell quote', 37.76084204281483), 'bchusdt': ('sell quote', 6.364430063816023), 'bnbusdt': ('sell base', 0.0), 'ltcusdt': ('sell quote', 22.64354020434509), 'ethbtc': ('sell quote', 0.0001501852003414448), 'bchbtc': ('sell base', 0.002742908754012856), 'bnbbtc': ('nothing', 0.0), 'ltcbtc': ('sell base', 0.1033275783313461), 'bchbnb': ('sell quote', 0.0), 'ltcbnb': ('nothing', 0.0)}
+delta_balance: {'usdt': -58.32778322830001, 'btc': 0.003996301054, 'ltc': -0.1, 'eth': 0.27140224764756415, 'bch': 0.0, 'bnb': 0.0}
+new balance: {'usdt': 0.0, 'btc': 0.007600683064, 'ltc': 0.12415325443833877, 'eth': 1.0734322476475642, 'bch': 0.004240000000000018, 'bnb': 0.0}
+usdt balance: 198.75036336169362
+delta usdt: -0.07090265005047058
+
+Query: {'btcusdt': ('sell base', 0.007542076694191005), 'ethusdt': ('nothing', 0.0), 'bchusdt': ('sell base', 0.002403173830070137), 'bnbusdt': ('sell base', 0.0), 'ltcusdt': ('sell base', 0.12103878146750781), 'ethbtc': ('nothing', 0.0), 'bchbtc': ('sell quote', 0.0025379010855436173), 'bnbbtc': ('sell quote', 0.002173957823914783), 'ltcbtc': ('sell quote', 0.0020230196612562473), 'bchbnb': ('sell base', 0.003960179062915287), 'ltcbnb': ('sell quote', 0.0)}
+delta_balance: {'usdt': 48.66061889178, 'btc': -0.007541999999999999, 'ltc': 0.0, 'eth': 0.0, 'bch': 0.0, 'bnb': 0.0}
+new balance: {'usdt': 48.66061889178, 'btc': 5.868306400000096e-05, 'ltc': 0.12415325443833877, 'eth': 1.0734322476475642, 'bch': 0.004240000000000018, 'bnb': 0.0}
+usdt balance: 198.86652495491603
+delta usdt: -0.048709328220013504
+
+Query: {'btcusdt': ('sell quote', 22.217599631600176), 'ethusdt': ('sell quote', 0.7004120241915865), 'bchusdt': ('sell quote', 23.83553489901845), 'bnbusdt': ('nothing', 0.0), 'ltcusdt': ('nothing', 0.0), 'ethbtc': ('nothing', 0.0), 'bchbtc': ('sell base', 0.0030888470200509106), 'bnbbtc': ('nothing', 0.0), 'ltcbtc': ('sell base', 0.11418413396985701), 'bchbnb': ('sell base', 0.0010197941870675074), 'ltcbnb': ('sell quote', 0.0)}
+delta_balance: {'usdt': -46.09706669568, 'btc': 0.004213613616, 'ltc': -0.11, 'eth': 0.0, 'bch': 0.10458, 'bnb': 0.0}
+new balance: {'usdt': 2.563552196099998, 'btc': 0.004272296680000001, 'ltc': 0.014153254438338772, 'eth': 1.0734322476475642, 'bch': 0.10882000000000003, 'bnb': 0.0}
+usdt balance: 198.58705996809283
+delta usdt: -0.06745527248000371
+
+Query: {'btcusdt': ('sell base', 0.0023567674808333806), 'ethusdt': ('nothing', 0.0), 'bchusdt': ('sell base', 0.025248452457087078), 'bnbusdt': ('sell quote', 1.1387935186366793), 'ltcusdt': ('sell quote', 2.0106930933258194), 'ethbtc': ('sell base', 0.3485981802328423), 'bchbtc': ('nothing', 0.0), 'bnbbtc': ('sell base', 0.0), 'ltcbtc': ('sell quote', 0.0022596954569628004), 'bchbnb': ('sell base', 0.08775005273282824), 'ltcbnb': ('sell quote', 0.0)}
+delta_balance: {'usdt': 15.18455780244, 'btc': 0.0026178177220000003, 'ltc': 0.37, 'eth': -0.3480000000000001, 'bch': -0.08700000000000001, 'bnb': 1.5781912289999998}
+new balance: {'usdt': 17.74810999854, 'btc': 0.006890114402000001, 'ltc': 0.38415325443833875, 'eth': 0.7254322476475641, 'bch': 0.02182000000000002, 'bnb': 1.5781912289999998}
+usdt balance: 198.58931680415532
+delta usdt: -0.12173097440566494
+
+Query: {'btcusdt': ('sell quote', 15.961061052030034), 'ethusdt': ('sell base', 0.288664391229927), 'bchusdt': ('sell quote', 17.36613482219902), 'bnbusdt': ('nothing', 0.0), 'ltcusdt': ('sell quote', 16.153837196317298), 'ethbtc': ('nothing', 0.0), 'bchbtc': ('nothing', 0.0), 'bnbbtc': ('sell base', 0.10656492979261907), 'ltcbtc': ('sell base', 0.3174003046332509), 'bchbnb': ('sell base', 0.012417621248512391), 'ltcbnb': ('nothing', 0.0)}
+delta_balance: {'usdt': -10.853265764069995, 'btc': 0.0045375793499999985, 'ltc': 0.10145000000000004, 'eth': -0.28866, 'bch': 0.06642, 'bnb': 0.11785792399999995}
+new balance: {'usdt': 6.894844234470003, 'btc': 0.011427693752, 'ltc': 0.4856032544383388, 'eth': 0.43677224764756406, 'bch': 0.08824000000000003, 'bnb': 1.6960491529999997}
+usdt balance: 198.49702291348277
+delta usdt: -0.14848673506611476
+
+Query: {'btcusdt': ('nothing', 0.0), 'ethusdt': ('nothing', 0.0), 'bchusdt': ('sell quote', 1.0307073129639064), 'bnbusdt': ('sell base', 0.47590913151243797), 'ltcusdt': ('sell quote', 4.363052659629063), 'ethbtc': ('sell base', 0.14513321056288764), 'bchbtc': ('sell quote', 0.005027758460794452), 'bnbbtc': ('nothing', 0.0), 'ltcbtc': ('sell quote', 0.001008036147833581), 'bchbnb': ('sell base', 0.00013430519930553847), 'ltcbnb': ('sell base', 0.0181264853598012)}
+delta_balance: {'usdt': 0.0, 'btc': -0.0029754965920000005, 'ltc': 0.15999999999999998, 'eth': -0.14500000000000002, 'bch': 0.14599999999999996, 'bnb': 0.0}
+new balance: {'usdt': 6.894844234470003, 'btc': 0.00845219716, 'ltc': 0.6456032544383388, 'eth': 0.29177224764756404, 'bch': 0.23424, 'bnb': 1.6960491529999997}
+usdt balance: 198.3359877779325
+delta usdt: -0.11308464663744644
+
+Query: {'btcusdt': ('nothing', 0.0), 'ethusdt': ('nothing', 0.0), 'bchusdt': ('sell quote', 2.482370179314394), 'bnbusdt': ('sell quote', 4.564397938820723), 'ltcusdt': ('sell quote', 1.953782050109283), 'ethbtc': ('sell quote', 0.0013864895789373517), 'bchbtc': ('sell quote', 0.008281491184367367), 'bnbbtc': ('sell base', 1.078952535225975), 'ltcbtc': ('nothing', 0.0), 'bchbnb': ('nothing', 0.0), 'ltcbnb': ('sell quote', 0.4475416003114159)}
+delta_balance: {'usdt': 0.0, 'btc': -0.006435981393999999, 'ltc': 0.138, 'eth': 0.066, 'bch': 0.20621951622721302, 'bnb': -1.515218774}
+new balance: {'usdt': 6.894844234470003, 'btc': 0.0020162157660000004, 'ltc': 0.7836032544383388, 'eth': 0.35777224764756405, 'bch': 0.440459516227213, 'bnb': 0.18083037899999965}
+usdt balance: 198.06472508600052
+delta usdt: -0.14626254273321138
+
+Query: {'btcusdt': ('nothing', 0.0), 'ethusdt': ('sell base', 0.13279583709594195), 'bchusdt': ('sell quote', 3.384135901364225), 'bnbusdt': ('sell quote', 5.563698679623447), 'ltcusdt': ('sell quote', 3.4561850764617637), 'ethbtc': ('sell quote', 0.0009283321540891483), 'bchbtc': ('nothing', 0.0), 'bnbbtc': ('sell base', 0.04242727483489471), 'ltcbtc': ('sell quote', 0.0011943902777847013), 'bchbnb': ('sell quote', 0.13734439046967958), 'ltcbnb': ('nothing', 0.0)}
+delta_balance: {'usdt': 17.7734129958, 'btc': -0.0020162157660000004, 'ltc': 0.1813364461267608, 'eth': -0.08879000000000004, 'bch': 0.007000000000000006, 'bnb': -0.12764651899999999}
+new balance: {'usdt': 24.668257230270004, 'btc': 0.0, 'ltc': 0.9649397005650996, 'eth': 0.268982247647564, 'bch': 0.44745951622721303, 'bnb': 0.053183859999999666}
+usdt balance: 198.13816603259275
+delta usdt: -0.03924166510131499
+
+Query: {'btcusdt': ('nothing', 0.0), 'ethusdt': ('nothing', 0.0), 'bchusdt': ('sell base', 0.0635757676361371), 'bnbusdt': ('sell base', 0.049571298962892134), 'ltcusdt': ('nothing', 0.0), 'ethbtc': ('sell base', 0.039036637644056474), 'bchbtc': ('nothing', 0.0), 'bnbbtc': ('sell base', 0.0277878169792997), 'ltcbtc': ('sell base', 0.9176218686312962), 'bchbnb': ('nothing', 0.0), 'ltcbnb': ('nothing', 0.0)}
+delta_balance: {'usdt': 14.0233342284, 'btc': 0.0063229806900000005, 'ltc': -0.91, 'eth': -0.03900000000000001, 'bch': -0.06357000000000002, 'bnb': 0.0}
+new balance: {'usdt': 38.691591458670004, 'btc': 0.0063229806900000005, 'ltc': 0.05493970056509956, 'eth': 0.229982247647564, 'bch': 0.383889516227213, 'bnb': 0.053183859999999666}
+usdt balance: 197.80836283483276
+delta usdt: -0.05556391844041286
+
+Query: {'btcusdt': ('sell quote', 20.69757432855179), 'ethusdt': ('nothing', 0.0), 'bchusdt': ('sell quote', 31.77681468113848), 'bnbusdt': ('sell base', 0.023504560286592126), 'ltcusdt': ('sell quote', 17.696026018826288), 'ethbtc': ('nothing', 0.0), 'bchbtc': ('sell quote', 0.0044225730938727776), 'bnbbtc': ('nothing', 0.0), 'ltcbtc': ('sell quote', 0.001782123553717451), 'bchbnb': ('nothing', 0.0), 'ltcbnb': ('nothing', 0.0)}
+delta_balance: {'usdt': -38.691591458670004, 'btc': -0.00298001884, 'ltc': 0.29, 'eth': 0.0, 'bch': 0.21024205694581333, 'bnb': 0.0}
+new balance: {'usdt': 0.0, 'btc': 0.0033429618500000003, 'ltc': 0.34493970056509954, 'eth': 0.229982247647564, 'bch': 0.5941315731730263, 'bnb': 0.053183859999999666}
+usdt balance: 197.77583252205926
+delta usdt: -0.12134687417318446
+
+Query: {'btcusdt': ('sell base', 0.0028216166637704348), 'ethusdt': ('sell base', 0.026398641333739703), 'bchusdt': ('sell quote', 0.0), 'bnbusdt': ('nothing', 0.0), 'ltcusdt': ('nothing', 0.0), 'ethbtc': ('sell base', 0.04591560303985349), 'bchbtc': ('sell quote', 0.0002576583641084448), 'bnbbtc': ('sell quote', 0.001331591118761806), 'ltcbtc': ('sell base', 0.05926296821910436), 'bchbnb': ('nothing', 0.0), 'ltcbnb': ('sell base', 0.11815644607934132)}
+delta_balance: {'usdt': 18.207888155729997, 'btc': -0.0030399152000000003, 'ltc': -0.16799999999999998, 'eth': -0.04500000000000001, 'bch': 0.007000000000000006, 'bnb': 1.0214534855718946}
+new balance: {'usdt': 18.207888155729997, 'btc': 0.00030304664999999996, 'ltc': 0.17693970056509956, 'eth': 0.184982247647564, 'bch': 0.6011315731730263, 'bnb': 1.0746373455718943}
+usdt balance: 197.81939044500734
+delta usdt: -0.06679427330038834
+
+Query: {'btcusdt': ('sell quote', 3.339272879251373), 'ethusdt': ('sell quote', 2.072145660987423), 'bchusdt': ('nothing', 0.0), 'bnbusdt': ('sell base', 0.45635054952240894), 'ltcusdt': ('sell quote', 14.491170326749197), 'ethbtc': ('nothing', 0.0), 'bchbtc': ('nothing', 0.0), 'bnbbtc': ('sell base', 0.6774872765728204), 'ltcbtc': ('sell quote', 0.00016201270052209468), 'bchbnb': ('nothing', 0.0), 'ltcbnb': ('sell quote', 0.06644188942920697)}
+delta_balance: {'usdt': -14.505432441500004, 'btc': 0.001141216558, 'ltc': 0.38995000000000013, 'eth': 0.0, 'bch': 0.0, 'bnb': -0.67}
+new balance: {'usdt': 3.702455714229993, 'btc': 0.001444263208, 'ltc': 0.5668897005650997, 'eth': 0.184982247647564, 'bch': 0.6011315731730263, 'bnb': 0.40463734557189424}
+usdt balance: 197.78142096444955
+delta usdt: -0.029974972787272236
+
+Query: {'btcusdt': ('nothing', 0.0), 'ethusdt': ('sell quote', 0.5613551283917629), 'bchusdt': ('sell base', 0.23063715653088146), 'bnbusdt': ('nothing', 0.0), 'ltcusdt': ('sell quote', 0.8175647697829552), 'ethbtc': ('sell quote', 3.561460074218954e-05), 'bchbtc': ('sell quote', 0.0013809446832265795), 'bnbbtc': ('sell quote', 0.0003148729118720963), 'ltcbtc': ('nothing', 0.0), 'bchbnb': ('nothing', 0.0), 'ltcbnb': ('nothing', 0.0)}
+delta_balance: {'usdt': 51.00811652430001, 'btc': -0.00137489352, 'ltc': 0.0, 'eth': 0.0, 'bch': -0.19063000000000002, 'bnb': 0.0}
+new balance: {'usdt': 54.71057223853, 'btc': 6.936968799999997e-05, 'ltc': 0.5668897005650997, 'eth': 0.184982247647564, 'bch': 0.4105015731730263, 'bnb': 0.40463734557189424}
+usdt balance: 197.90509760133497
+delta usdt: -0.06386610307998808
+
+Query: {'btcusdt': ('nothing', 0.0), 'ethusdt': ('sell quote', 23.868135445523396), 'bchusdt': ('sell base', 0.2245597124654757), 'bnbusdt': ('sell base', 0.018997436422083052), 'ltcusdt': ('sell quote', 0.6680760757852169), 'ethbtc': ('sell quote', 1.8384754449828273e-05), 'bchbtc': ('sell quote', 5.55328604780877e-05), 'bnbbtc': ('sell base', 0.1924729439212194), 'ltcbtc': ('nothing', 0.0), 'bchbnb': ('nothing', 0.0), 'ltcbnb': ('nothing', 0.0)}
+delta_balance: {'usdt': 25.7319341631, 'btc': 0.000358076565, 'ltc': 0.0, 'eth': 0.17825999999999997, 'bch': -0.22455000000000003, 'bnb': -0.19}
+new balance: {'usdt': 80.44250640163, 'btc': 0.00042744625299999996, 'ltc': 0.5668897005650997, 'eth': 0.36324224764756396, 'bch': 0.1859515731730263, 'bnb': 0.21463734557189423}
+usdt balance: 197.70423409738578
+delta usdt: -0.07883816603850846
+
+Query: {'btcusdt': ('sell base', 0.000425507307312148), 'ethusdt': ('sell base', 0.008878986828979215), 'bchusdt': ('nothing', 0.0), 'bnbusdt': ('sell base', 0.08292969403218249), 'ltcusdt': ('sell base', 0.053608941320083314), 'ethbtc': ('sell quote', 0.000236841750152688), 'bchbtc': ('nothing', 0.0), 'bnbbtc': ('sell base', 0.09459018583548032), 'ltcbtc': ('nothing', 0.0), 'bchbnb': ('sell quote', 0.1941500077504146), 'ltcbnb': ('nothing', 0.0)}
+delta_balance: {'usdt': 0.0, 'btc': -5.931266400000001e-05, 'ltc': 0.0, 'eth': 0.01100000000000001, 'bch': 0.006841364436217301, 'bnb': -0.21463734557189423}
+new balance: {'usdt': 80.44250640163, 'btc': 0.00036813358899999996, 'ltc': 0.5668897005650997, 'eth': 0.374242247647564, 'bch': 0.1927929376092436, 'bnb': 0.0}
+usdt balance: 197.49617899120744
+delta usdt: -0.006274149756507086
+
+Query: {'btcusdt': ('sell base', 4.990473074198702e-05), 'ethusdt': ('nothing', 0.0), 'bchusdt': ('sell quote', 56.68481672395335), 'bnbusdt': ('nothing', 0.0), 'ltcusdt': ('sell base', 0.4541302293213879), 'ethbtc': ('sell quote', 0.00035528782559389753), 'bchbtc': ('sell quote', 0.0001316450359118313), 'bnbbtc': ('sell base', 0.0), 'ltcbtc': ('sell base', 0.03283404743457216), 'bchbnb': ('nothing', 0.0), 'ltcbnb': ('sell base', 0.3597357562267122)}
+delta_balance: {'usdt': -39.060296107500015, 'btc': -0.00017217742200000002, 'ltc': -0.56613, 'eth': 0.017000000000000015, 'bch': 0.25632000000000005, 'bnb': 0.262629108}
+new balance: {'usdt': 41.38221029412998, 'btc': 0.00019595616699999993, 'ltc': 0.0007597005650996635, 'eth': 0.391242247647564, 'bch': 0.44911293760924365, 'bnb': 0.262629108}
+usdt balance: 197.37566061768186
+delta usdt: -0.13596170595920398
+
+Query: {'btcusdt': ('sell quote', 28.320774201583347), 'ethusdt': ('nothing', 0.0), 'bchusdt': ('sell base', 0.06004921313790841), 'bnbusdt': ('sell base', 0.1902111634675557), 'ltcusdt': ('sell base', 0.0002906219637761399), 'ethbtc': ('sell base', 0.17671894576716002), 'bchbtc': ('nothing', 0.0), 'bnbbtc': ('sell quote', 2.72302824655915e-06), 'ltcbtc': ('sell base', 3.861196329230224e-05), 'bchbnb': ('sell base', 0.20980695520123827), 'ltcbnb': ('nothing', 0.0)}
+delta_balance: {'usdt': -15.088145188549998, 'btc': 0.008063545792, 'ltc': 0.0, 'eth': -0.176, 'bch': -0.26903999999999995, 'bnb': 3.7920621419999994}
+new balance: {'usdt': 26.294065105579985, 'btc': 0.008259501959, 'ltc': 0.0007597005650996635, 'eth': 0.215242247647564, 'bch': 0.1800729376092437, 'bnb': 4.054691249999999}
+usdt balance: 197.17612066314152
+delta usdt: -0.25378422807222023
+
+Query: {'btcusdt': ('sell quote', 13.297221100128601), 'ethusdt': ('nothing', 0.0), 'bchusdt': ('nothing', 0.0), 'bnbusdt': ('nothing', 0.0), 'ltcusdt': ('sell quote', 13.67112263675111), 'ethbtc': ('sell quote', 0.006341381721468622), 'bchbtc': ('sell base', 0.03270207906541205), 'bnbbtc': ('sell base', 3.716390832135842), 'ltcbtc': ('nothing', 0.0), 'bchbnb': ('nothing', 0.0), 'ltcbnb': ('nothing', 0.0)}
+delta_balance: {'usdt': -26.294065105579985, 'btc': 0.0038411810310000002, 'ltc': 0.3330336128919844, 'eth': 0.304, 'bch': -0.032, 'bnb': -3.71}
+new balance: {'usdt': 0.0, 'btc': 0.01210068299, 'ltc': 0.3337933134570841, 'eth': 0.519242247647564, 'bch': 0.1480729376092437, 'bnb': 0.34469124999999945}
+usdt balance: 197.04607908207373
+delta usdt: -0.10535516297062486
+
+Query: {'btcusdt': ('sell base', 0.001695205899256014), 'ethusdt': ('sell base', 0.10380960882292331), 'bchusdt': ('sell base', 0.00415749788415907), 'bnbusdt': ('nothing', 0.0), 'ltcusdt': ('nothing', 0.0), 'ethbtc': ('sell base', 0.41010616052880117), 'bchbtc': ('nothing', 0.0), 'bnbbtc': ('nothing', 0.0), 'ltcbtc': ('sell base', 0.17366023988344367), 'bchbnb': ('nothing', 0.0), 'ltcbnb': ('sell base', 0.08947235781494838)}
+delta_balance: {'usdt': 24.6707426619, 'btc': 0.00786388155, 'ltc': -0.259, 'eth': -0.5138, 'bch': 0.0, 'bnb': 0.284912802}
+new balance: {'usdt': 24.6707426619, 'btc': 0.01996456454, 'ltc': 0.07479331345708407, 'eth': 0.005442247647563958, 'bch': 0.1480729376092437, 'bnb': 0.6296040519999995}
+usdt balance: 196.39009705244982
+delta usdt: -0.08572680645815467
+
+Query: {'btcusdt': ('nothing', 0.0), 'ethusdt': ('sell quote', 20.873357013998337), 'bchusdt': ('sell quote', 2.2150974397462), 'bnbusdt': ('sell base', 0.37361866822069423), 'ltcusdt': ('sell quote', 18.605215594050634), 'ethbtc': ('sell base', 0.0008385728560447586), 'bchbtc': ('nothing', 0.0), 'bnbbtc': ('nothing', 0.0), 'ltcbtc': ('sell base', 0.07412153685152545), 'bchbnb': ('sell base', 0.02993222531969005), 'ltcbnb': ('sell quote', 0.5550961943440128)}
+delta_balance: {'usdt': -20.894087214000002, 'btc': 0.0004239855899999985, 'ltc': 0.10200000000000001, 'eth': 0.15660000000000002, 'bch': -0.028999999999999998, 'bnb': -0.026870825000000265}
+new balance: {'usdt': 3.776655447899998, 'btc': 0.02038855013, 'ltc': 0.17679331345708407, 'eth': 0.16204224764756398, 'bch': 0.1190729376092437, 'bnb': 0.6027332269999992}
+usdt balance: 196.03288865673844
+delta usdt: -0.07780683065610106
+
+Query: {'btcusdt': ('sell quote', 2.2430404351242004), 'ethusdt': ('nothing', 0.0), 'bchusdt': ('sell quote', 0.4778301707193553), 'bnbusdt': ('sell quote', 3.1311403313549797), 'ltcusdt': ('sell quote', 2.0090941801348374), 'ethbtc': ('sell quote', 0.0008311896411175232), 'bchbtc': ('sell base', 0.06692745501071488), 'bnbbtc': ('sell quote', 0.009532994016856724), 'ltcbtc': ('sell quote', 0.013398740649783783), 'bchbnb': ('sell quote', 0.48204919546063973), 'ltcbnb': ('sell quote', 0.4481211944222644)}
+delta_balance: {'usdt': 0.0, 'btc': -0.02038855013, 'ltc': 2.16689663533566, 'eth': 0.03900000000000001, 'bch': -0.04000000000000001, 'bnb': 4.108249170000001}
+new balance: {'usdt': 3.776655447899998, 'btc': 0.0, 'ltc': 2.3436899487927443, 'eth': 0.20104224764756398, 'bch': 0.0790729376092437, 'bnb': 4.7109823969999995}
+usdt balance: 195.77743629913482
+delta usdt: -0.25545235760361606
+
+Query: {'btcusdt': ('sell quote', 2.148611521669191), 'ethusdt': ('sell base', 0.047188845214231), 'bchusdt': ('nothing', 0.0), 'bnbusdt': ('sell quote', 2.101165435456836), 'ltcusdt': ('sell base', 1.2777741439388537), 'ethbtc': ('nothing', 0.0), 'bchbtc': ('sell base', 0.03310325078201335), 'bnbbtc': ('sell base', 0.6192205049458156), 'ltcbtc': ('sell quote', 0.0), 'bchbnb': ('sell quote', 0.46889426921894284), 'ltcbnb': ('nothing', 0.0)}
+delta_balance: {'usdt': 49.55342836860001, 'btc': 0.0022862584529999997, 'ltc': -1.27777, 'eth': 0.0, 'bch': -0.008000000000000007, 'bnb': -1.0663058500000004}
+new balance: {'usdt': 53.33008381650001, 'btc': 0.0022862584529999997, 'ltc': 1.0659199487927442, 'eth': 0.20104224764756398, 'bch': 0.07107293760924369, 'bnb': 3.644676546999999}
+usdt balance: 195.93441651510892
+delta usdt: -0.07248620157295704
+
+Query: {'btcusdt': ('sell base', 0.0013327252022753665), 'ethusdt': ('nothing', 0.0), 'bchusdt': ('sell base', 0.03991825697304434), 'bnbusdt': ('sell quote', 7.601918582771137), 'ltcusdt': ('sell quote', 36.7396133669757), 'ethbtc': ('nothing', 0.0), 'bchbtc': ('sell base', 0.042216012004040446), 'bnbbtc': ('sell quote', 0.002066606956368487), 'ltcbtc': ('sell quote', 0.0015873101165287942), 'bchbnb': ('sell quote', 1.7621782929120917), 'ltcbnb': ('nothing', 0.0)}
+delta_balance: {'usdt': -36.7761492098, 'btc': -0.00219736489, 'ltc': 1.2054300000000004, 'eth': 0.0, 'bch': 0.05399999999999999, 'bnb': -0.6622144639999998}
+new balance: {'usdt': 16.553934606700004, 'btc': 8.889356299999953e-05, 'ltc': 2.2713499487927447, 'eth': 0.20104224764756398, 'bch': 0.12507293760924368, 'bnb': 2.9824620829999993}
+usdt balance: 196.07636589363807
+delta usdt: -0.17582818309335835
+
+Query: {'btcusdt': ('sell quote', 4.2373462114111415), 'ethusdt': ('sell quote', 0.12012476721504982), 'bchusdt': ('nothing', 0.0), 'bnbusdt': ('sell base', 0.03147221425542143), 'ltcusdt': ('nothing', 0.0), 'ethbtc': ('sell base', 0.05105143314660431), 'bchbtc': ('nothing', 0.0), 'bnbbtc': ('sell quote', 2.6839949956091567e-05), 'ltcbtc': ('sell quote', 5.4073006700567315e-05), 'bchbnb': ('nothing', 0.0), 'ltcbnb': ('sell base', 0.30972315344489076)}
+delta_balance: {'usdt': 0.0, 'btc': 0.0010600448940000003, 'ltc': -0.30899999999999994, 'eth': -0.05100000000000002, 'bch': 0.0, 'bnb': 0.9878111999999999}
+new balance: {'usdt': 16.553934606700004, 'btc': 0.0011489384569999999, 'ltc': 1.9623499487927447, 'eth': 0.15004224764756396, 'bch': 0.12507293760924368, 'bnb': 3.970273282999999}
+usdt balance: 196.05547555366394
+delta usdt: -0.009687575892030509
+
+Query: {'btcusdt': ('sell base', 0.0009829031584019344), 'ethusdt': ('sell quote', 5.389368736011013), 'bchusdt': ('nothing', 0.0), 'bnbusdt': ('sell base', 1.077730057957619), 'ltcusdt': ('sell base', 0.21623371457989307), 'ethbtc': ('sell quote', 0.0008268251208383789), 'bchbtc': ('sell quote', 0.0004904754641024949), 'bnbbtc': ('sell base', 0.1584001798896761), 'ltcbtc': ('sell base', 1.1197072881669603), 'bchbnb': ('nothing', 0.0), 'ltcbnb': ('sell base', 0.7690847102759201)}
+delta_balance: {'usdt': 12.987499499999998, 'btc': 0.005843317288, 'ltc': -1.879, 'eth': 0.03900000000000001, 'bch': 0.009744661301402696, 'bnb': 1.236230311}
+new balance: {'usdt': 29.541434106700002, 'btc': 0.006992255745, 'ltc': 0.08334994879274471, 'eth': 0.18904224764756397, 'bch': 0.13481759891064637, 'bnb': 5.206503593999999}
+usdt balance: 196.05995100448484
+delta usdt: -0.07975476461021458
+
+Query: {'btcusdt': ('sell base', 0.005556953317917749), 'ethusdt': ('sell base', 0.11180643517736892), 'bchusdt': ('nothing', 0.0), 'bnbusdt': ('sell base', 1.1101059282158154), 'ltcusdt': ('sell base', 0.07774985028332264), 'ethbtc': ('nothing', 0.0), 'bchbtc': ('nothing', 0.0), 'bnbbtc': ('sell quote', 0.0029715328350396007), 'ltcbtc': ('sell quote', 0.0054042938051378515), 'bchbnb': ('sell quote', 3.8056201659805566), 'ltcbnb': ('sell quote', 1.7460222520181001)}
+delta_balance: {'usdt': 64.0859922576, 'btc': -0.006992255745, 'ltc': 0.3278028021821704, 'eth': -0.11180000000000001, 'bch': 0.20800000000000002, 'bnb': -5.206503593999999}
+new balance: {'usdt': 93.62742636429999, 'btc': 0.0, 'ltc': 0.4111527509749151, 'eth': 0.07724224764756396, 'bch': 0.3428175989106464, 'bnb': 0.0}
+usdt balance: 195.92611546474205
+delta usdt: -0.24658401188963808
+

@@ -66,7 +66,7 @@ class Environment:
             ncalls += 1
             time_spent = time.time() - start_time
             all_time += time_spent
-            if all_time < self.period:
+            if time_spent < self.period:
                 time.sleep(self.period - time_spent)
 
         self.socket_process.terminate()

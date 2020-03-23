@@ -1,5 +1,4 @@
 from ..paper_testing.Emulator_v2 import EmulatorV2
-from ..test_files.Bonnie_model import BonnieModel
 from ..paper_testing import Agent, Environment
 import logging
 from .write_all_logger import WriteAllLogger

@@ -31,7 +31,6 @@ class EmulatorV2:
     def compute_commission(self, name, amount):
         return self.fee * amount
 
-    # TODO - добавить проверку достаточности quote volume
     def round(self, pair, amount):
         min_val = self.min_order_size[pair][0]
         new_val = (amount // min_val) * min_val
@@ -54,7 +53,7 @@ class EmulatorV2:
                 bought += amount / price
                 return bought
 
-    def make_buy_base_order(self, pair, amount):
+    def make_buy_base_order(self, pair, amount, ignore_bnb=True):
         if not amount:
             return 0., 0.
         amount = self.round(pair, amount)
@@ -80,12 +79,16 @@ class EmulatorV2:
                 if not self.spend_till_end:
                     return 0., 0.
 
-                to_buy = can_spend / price
-                for i in range(10):
-                    com = self.compute_commission(pair[3:], to_buy * price)
-                    to_buy = (can_spend - com) / price
-                spent += to_buy * price + self.compute_commission(pair[3:], to_buy * price)
-                bought += to_buy
+                if ignore_bnb:
+                    bought += can_spend / (price * (1 + self.fee))
+                    spent += can_spend
+                else:
+                    to_buy = can_spend / price
+                    for i in range(10):
+                        com = self.compute_commission(pair[3:], to_buy * price)
+                        to_buy = (can_spend - com) / price
+                    spent += to_buy * price + self.compute_commission(pair[3:], to_buy * price)
+                    bought += to_buy
 
                 return bought, -spent
 
