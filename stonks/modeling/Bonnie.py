@@ -1,5 +1,6 @@
 from ..auxiliary import split_to_pairs
 from xgboost import XGBClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 import logging
@@ -7,6 +8,7 @@ import pandas as pd
 import time
 import logging
 import numpy as np
+from ..auxiliary.fitting import fit_supervised
 import joblib
 
 
@@ -49,11 +51,9 @@ class BonnieModel:
                 query[pair] = ('sell base', balance[pair[:3]])
         return query
 
-
-
     @staticmethod
     def get_model():
-        return XGBClassifier()
+        return LogisticRegression(n_jobs=-1)
 
     @staticmethod
     def fit_partial(pair, data: pd.DataFrame, window_size=200):
@@ -82,5 +82,6 @@ class BonnieModel:
     def fit(data: pd.DataFrame, window_size=200):
         for pair in BonnieModel.pairs_implemented:
             semi_data = data[data['currency_pair'] == pair]
-            model = BonnieModel.fit_partial(pair, semi_data, window_size=window_size)
+            #  model = BonnieModel.fit_partial(pair, semi_data, window_size=window_size)
+            model = fit_supervised(data, BonnieModel.get_model())
             joblib.dump(model, 'settings/Bonnie_settings/' + pair + '_model.joblib')
