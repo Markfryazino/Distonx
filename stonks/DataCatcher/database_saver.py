@@ -1,10 +1,12 @@
 import pymysql
 import logging
+import pandas as pd
 from ..auxiliary import auth_db
 from ..auxiliary import split_to_pairs
+import time
 
 
-class db:
+class DB:
     def __init__(self):
         address, login, password = auth_db()
         self.connection = pymysql.connect(address, login, password, 'cryptodata', autocommit=True)
@@ -17,22 +19,23 @@ class db:
         #  print(self.cursor.fetchall())
 
     def push_data(self, dct):
-        time = dct['time']
+        cur_time = dct['time']
         splitted_pairs = split_to_pairs(dct)
         for pairname in splitted_pairs:
-            request = self.form_request(time, pairname, splitted_pairs[pairname])
+            request = DB.form_request(cur_time, pairname, splitted_pairs[pairname])
             self.execute(request)
 
-    def form_request(self, time, pairname, dct):
+    @staticmethod
+    def form_request(cur_time, pairname, dct):
         base_start = "INSERT INTO `distonx` (`time`, `currency_pair`"
         keys = ""
-        values = "'" + str(time) + "', '" + pairname + "'"
+        values = "'" + str(cur_time) + "', '" + pairname + "'"
         for key, value in dct.items():
             keys += ", `" + str(key) + "`"
             values += ", '" + str(value) + "'"
         return base_start + keys + ") VALUES (" + values + ");"
 
-    def get_data_from_DB(self, time_start, time_finish,
+    def get_data_from_db(self, time_start, time_finish,
                          pair_name=''):  # возвращает тапл таплов. Один тапл = одна строчка в БД
         if pair_name:
             request = 'SELECT * FROM `distonx` WHERE time >= ' + str(
@@ -45,15 +48,24 @@ class db:
         ans = self.cursor.fetchall()
         return ans
 
-    def get_data_by_id(self, id): #возвращает строку по id
-        request = 'SELECT * FROM  `distonx` WHERE id = ' + str(id)
+    def get_data_by_id(self, sid):  # возвращает строку по id
+        request = 'SELECT * FROM  `distonx` WHERE id = ' + str(sid)
         self.execute(request)
         ans = self.cursor.fetchone()
         return ans
 
-    def get_columns_names(
-            self):  # Возвращает названия всех стлобцов в том порядке, в котором они находятся в БД
+    # Возвращает названия всех стлобцов в том порядке, в котором они находятся в БД
+    def get_columns_names(self):
         request = 'SHOW columns FROM distonx;'
         self.execute(request)
         ans = list([i[0] for i in self.cursor.fetchall()])
         return ans
+
+    def fetch_pandas(self, start, end, pair=''):
+        names = self.get_columns_names()
+        data = self.get_data_from_db(start, end, pair_name=pair)
+        data = pd.DataFrame(data=data, columns=names)
+        return data
+
+    def fetch_last(self, indent=3600, pair=''):
+        return self.fetch_pandas(time.time() - indent, time.time(), pair)

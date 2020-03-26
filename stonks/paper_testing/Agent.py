@@ -1,3 +1,6 @@
+
+
+# Мета-класс агента. В self.model инкапсулирована сама модель.
 class Agent:
     def __init__(self, balance, model):
         self.balance = balance

@@ -6,6 +6,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 sns.set()
 
+# Файлик, в котором пишем скрипты для обучения моделей
+
 logging.basicConfig(level='DEBUG')
 logging.getLogger('matplotlib').setLevel(logging.WARNING)
 fit_model(BonnieModel, time.time() - 10000, time.time(), 'btcusdt')

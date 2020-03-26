@@ -1,4 +1,4 @@
-from ..DataCatcher.database_saver import db
+from ..DataCatcher.database_saver import DB
 import pandas as pd
 import logging
 from .data_preprocessing import make_x_y
@@ -8,15 +8,17 @@ from sklearn.model_selection import train_test_split
 
 
 def fit_model(model, start_time, end_time, pair_name=''):
-    dbase = db()
+    """Пайплайн обучения (все инкапсулировано в model.fit"""
+    dbase = DB()
     names = dbase.get_columns_names()
-    data = dbase.get_data_from_DB(start_time, end_time, pair_name)
+    data = dbase.get_data_from_db(start_time, end_time, pair_name)
     logging.debug('fetched data')
     data = pd.DataFrame(data=data, columns=names)
     model.fit(data)
 
 
 def fit_supervised(data, model):
+    """Пайплайн обучения с учителем для Бонни"""
     plt.subplot(311)
     x, y = make_x_y(data)
     x_train, x_test, y_train, y_test = train_test_split(x, y, shuffle=False, test_size=0.2)
@@ -38,10 +40,8 @@ def fit_supervised(data, model):
     plt.plot(x_test.index, x_test['target'])
     plt.scatter(x_test[y_test == 1].index, x_test[y_test == 1]['target'], color='g')
     plt.scatter(x_test[y_test == 0].index, x_test[y_test == 0]['target'], color='r')
-    #plt.show(block=False)
     plt.subplot(313)
     plt.plot(x_test.index, x_test['target'])
     plt.scatter(x_test[ups].index, x_test[ups]['target'], color='r')
     plt.scatter(x_test[downs].index, x_test[downs]['target'], color='g')
-    #plt.show(block=False)
     return model

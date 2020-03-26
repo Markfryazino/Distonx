@@ -5,6 +5,7 @@ from ..paper_testing import Agent, EmulatorV2, Environment
 from ..modeling import BonnieModel
 
 
+# Тест с Арианой
 def paper_test_1(start_balance=200., time=60.):
     logging.basicConfig(level=logging.DEBUG)
 
@@ -22,6 +23,7 @@ def paper_test_1(start_balance=200., time=60.):
     env.start()
 
 
+# Тест с Бонни
 def bonnie_test(start_balance=200., time=60.):
     logging.basicConfig(level=logging.DEBUG)
 

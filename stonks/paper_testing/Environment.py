@@ -5,6 +5,7 @@ import logging
 import time
 
 
+# Класс среды, который полностью организует взаимодействие агента и биржи
 class Environment:
     def __init__(self, agent, emulator, logger=None, timeout=None, period=10.):
         self.agent = agent
@@ -23,6 +24,7 @@ class Environment:
 
         logging.info('Environment initialization successful')
 
+    # Формирование ордербука для эмулятора
     def form_orderbook(self):
         orderbook = {pair: {'bids': [], 'asks': []} for pair in self.pairs}
         for pair in self.pairs:
@@ -35,6 +37,7 @@ class Environment:
 
         return orderbook
 
+    # Один тик
     def step(self, data):
         query, balance = self.agent.form_query(data)
         emulator_response = self.emulator.handle(query, balance, self.form_orderbook())
@@ -49,6 +52,7 @@ class Environment:
     def finish(self):
         self.time_to_stop = True
 
+    # Все выполняется в этой функции
     def start(self):
         self.socket_process.start()
         logging.info('waiting for 80 seconds for DataCatcher to wake up')

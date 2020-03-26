@@ -3,6 +3,7 @@ import joblib
 import time
 
 
+# Все пишем в Ariana_output
 class WriteAllLogger:
     def __init__(self):
         pass
@@ -16,13 +17,14 @@ class WriteAllLogger:
             file.write('delta usdt: ' + str(step_params['emulator_response']['delta_usdt']) + '\n\n')
 
 
+# Пишем не все, а только когда есть запрос
 class SparseLogger:
     def __init__(self):
         open("trash/output.pickle", "w").close()
         self.data = []
 
     def step(self, step_params):
-        if step_params['query'] != {}:
+        if step_params['query']:
             logging.debug(str(time.time()))
             self.data.append((time.time(), step_params['query'],
                               step_params['emulator_response']['delta_balance'],

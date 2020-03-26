@@ -1,3 +1,5 @@
+"""В этом файлике собраны функции, которые могут понадобиться для обработки данных"""
+
 import numpy as np
 import datetime
 import random
@@ -18,6 +20,7 @@ def get_id(x):
 
 
 def get_kline_info(data):
+    """Возвращает датафрейм, в котором добавлены фичи свечей из ta. Но вообще, оно inplace (аккуратно)"""
     global kline_id
     kline_id = 0
 
@@ -42,7 +45,8 @@ def get_kline_info(data):
         lambda x: datetime.datetime.fromtimestamp(x / 1000))
 
     feat = ta.add_all_ta_features(klines, 'kline_open_price',
-                                  'kline_high_price', 'kline_low_price', 'kline_close_price', 'kline_base_volume')
+                                  'kline_high_price', 'kline_low_price', 'kline_close_price',
+                                  'kline_base_volume')
 
     data.drop(['kline_trade_number', 'kline_open_price', 'kline_open_price',
                'kline_close_price', 'kline_high_price', 'kline_low_price',
@@ -57,6 +61,7 @@ def get_kline_info(data):
 
 
 def get_state(data, mod=0.001):
+    """Питоновская имплементация получения label-ов для данных"""
     target = (data['depth_bid_price_1'] + data['depth_ask_price_1']) / 2.
     res = pd.Series(index=target.index, data=-1)
 
@@ -82,6 +87,7 @@ def get_state(data, mod=0.001):
 
 
 def plot_state(data, res):
+    """Отрисовка label-а"""
     target = (data['depth_bid_price_1'] + data['depth_ask_price_1']) / 2.
     data['normal_time'] = data['time'].apply(datetime.datetime.fromtimestamp)
     target.index = data['normal_time']
@@ -89,10 +95,10 @@ def plot_state(data, res):
     target.plot()
     plt.scatter(target[res == 1].index, target[res == 1], color='g')
     plt.scatter(target[res == 0].index, target[res == 0], color='r')
-    #plt.show(block=False)
 
 
 def make_x_y(df, mod=0.003, need_kline=True):
+    """По сути, пайплайн обработки"""
     if need_kline:
         logging.debug('counting klines')
         df = get_kline_info(df)
@@ -105,3 +111,12 @@ def make_x_y(df, mod=0.003, need_kline=True):
     df = df[res != -1]
     res = res[res != -1]
     return df, res
+
+
+def plot_target(data):
+    """Отрисовка таргета"""
+    target = (data['depth_bid_price_1'] + data['depth_ask_price_1']) / 2.
+    normal_time = data['time'].apply(datetime.datetime.fromtimestamp)
+    plt.figure(figsize=(15, 5))
+    plt.plot(normal_time, target)
+    plt.show(block=False)

@@ -1,4 +1,7 @@
+
+
 def split_to_pairs(dct):
+    """Приводим словарь датакэчера в удобоваримый вид"""
     dict_of_pairs = dict()
     for key in dct:
         splited_key = key.split('_')

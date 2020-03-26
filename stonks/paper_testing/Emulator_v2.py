@@ -1,6 +1,6 @@
-import math
 
 
+# Класс эмулятора биржи, который обрабатывает запросы модели.
 class EmulatorV2:
     def __init__(self, spend_till_end=True, pay_in_bnb=True):
         self.spend_till_end = spend_till_end
@@ -17,6 +17,7 @@ class EmulatorV2:
         with open('settings/min_order_size_and_step.txt', 'r') as f:
             self.min_order_size = eval(f.read())
 
+    # Подсчет стоимости текущего кошелька в долларах
     def count_in_usdt(self):
         result = 0.
         for name in self.balance.keys():
@@ -31,15 +32,18 @@ class EmulatorV2:
     def compute_commission(self, name, amount):
         return self.fee * amount
 
+    # Округление (не можем выставлять ордера с произвольными ценами)
     def round(self, pair, amount):
         min_val = self.min_order_size[pair][0]
         new_val = (amount // min_val) * min_val
         return new_val
 
+    # Проверка, достаточно ли большой ордер (иначе биржа может не принять)
     def check_if_enough(self, pair, amount):
         min_val = self.min_order_size[pair][1]
         return amount >= min_val
 
+    # Оценка того, сколько мы можем купить base на фиксированное количество quote
     def quote_to_base(self, pair, amount):
         if not amount:
             return 0.
@@ -53,6 +57,7 @@ class EmulatorV2:
                 bought += amount / price
                 return bought
 
+    # Покупка коинов
     def make_buy_base_order(self, pair, amount, ignore_bnb=True):
         if not amount:
             return 0., 0.
@@ -92,6 +97,7 @@ class EmulatorV2:
 
                 return bought, -spent
 
+    # Продажа коинов
     def make_sell_base_order(self, pair, amount, to_round=True, use_comm=True):
         if (not amount) or (not self.spend_till_end and amount > self.balance[pair[:3]]):
             return 0., 0.
@@ -110,12 +116,13 @@ class EmulatorV2:
                 bought += price * amount - use_comm * self.compute_commission(pair[3:], price * amount)
                 return -eager_to_spend, bought
 
-    def handle(self, query_dict, balance, orders):
+    # Основная функция, обрабатывающая запросы модели
+    def handle(self, query, balance, orders):
         self.balance = balance.copy()
         self.orders = orders
         old_usdt = self.count_in_usdt()
 
-        for pair, (action, amount) in query_dict.items():
+        for (pair, action, amount) in query.items():
             delta_first = 0
             delta_second = 0
             if action == 'buy base':
