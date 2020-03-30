@@ -21,7 +21,7 @@ class BonnieModel:
     # Эта функция возвращает класс модели (просто для гибкости)
     @staticmethod
     def current_model():
-        return LogisticRegression(n_jobs=-1)
+        return LogisticRegression(n_jobs=-1, solver='lbfgs')
 
     # Обучение. Вызывается перед использованием один раз.
     @staticmethod

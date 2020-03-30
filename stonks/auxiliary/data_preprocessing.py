@@ -62,7 +62,10 @@ def get_kline_info(data):
 
 def get_state(data, mod=0.001):
     """Питоновская имплементация получения label-ов для данных"""
-    target = (data['depth_bid_price_1'] + data['depth_ask_price_1']) / 2.
+    if 'mid_price' in data.columns:
+        target = data['mid_price']
+    else:
+        target = (data['depth_bid_price_1'] + data['depth_ask_price_1']) / 2.
     res = pd.Series(index=target.index, data=-1)
 
     for _ in range(5):
