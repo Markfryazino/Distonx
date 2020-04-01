@@ -35,9 +35,9 @@ def bonnie_test(start_balance=200., time=60.):
 
     model = BonnieModel()
     agent = Agent(balance, model)
-    emulator = EmulatorV2()
+    emulator = EmulatorV2(fee=0.)
     logger = SparseLogger()
-    env = Environment(agent, emulator, logger, time)
+    env = Environment(agent, emulator, logger, time, period=1.)
     try:
         env.start()
     except KeyboardInterrupt:

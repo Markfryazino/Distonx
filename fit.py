@@ -10,5 +10,5 @@ sns.set()
 
 logging.basicConfig(level='DEBUG')
 logging.getLogger('matplotlib').setLevel(logging.WARNING)
-fit_model(BonnieModel, time.time() - 10000, time.time(), 'btcusdt')
+fit_model(BonnieModel, time.time() - 100000, time.time(), 'btcusdt')
 plt.show()

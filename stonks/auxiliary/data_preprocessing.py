@@ -8,6 +8,7 @@ import ta
 import logging
 import pandas as pd
 import os
+from sklearn.preprocessing import StandardScaler
 
 kline_id = 0
 
@@ -92,9 +93,10 @@ def get_state(data, mod=0.001):
 def plot_state(data, res):
     """Отрисовка label-а"""
     target = (data['depth_bid_price_1'] + data['depth_ask_price_1']) / 2.
-    data['normal_time'] = data['time'].apply(datetime.datetime.fromtimestamp)
-    target.index = data['normal_time']
-    res.index = data['normal_time']
+    if 'time' in data.columns:
+        data['normal_time'] = data['time'].apply(datetime.datetime.fromtimestamp)
+        target.index = data['normal_time']
+        res.index = data['normal_time']
     target.plot()
     plt.scatter(target[res == 1].index, target[res == 1], color='g')
     plt.scatter(target[res == 0].index, target[res == 0], color='r')
@@ -107,13 +109,20 @@ def make_x_y(df, mod=0.003, need_kline=True):
         df = get_kline_info(df)
         df.drop('kline_id', axis=1, inplace=True)
     logging.debug('getting state')
-    res = get_state(df, mod)
-    plot_state(df, res)
-    df.set_index('normal_time', inplace=True)
-    df.drop(['id', 'time', 'currency_pair'], axis=1, inplace=True)
-    df = df[res != -1]
-    res = res[res != -1]
-    return df, res
+    df = basic_clean(df)
+    y = get_state(df, mod)
+    plot_state(df, y)
+    orders = df[construct_order_names(5)]
+    some = count_some(orders, 5)
+    some.drop(construct_order_names(5), axis=1, inplace=True)
+    some.drop('mid_price', axis=1, inplace=True)
+    scaler = StandardScaler()
+    scaler.fit(some)
+    some = pd.DataFrame(scaler.transform(some), index=some.index, columns=some.columns)
+
+    some = some[y != -1]
+    y = y[y != -1]
+    return some, y, scaler
 
 
 def plot_target(data):
