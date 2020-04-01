@@ -123,3 +123,11 @@ def plot_target(data):
     plt.figure(figsize=(15, 5))
     plt.plot(normal_time, target)
     plt.show(block=False)
+
+
+def basic_clean(data: pd.DataFrame):
+    """Индекс по времени + отбрасывание некоторых столбцов"""
+    data['normal_time'] = data['time'].apply(datetime.datetime.fromtimestamp)
+    data.set_index('normal_time', inplace=True)
+    data.drop(['id', 'time', 'currency_pair'], axis=1, inplace=True)
+    return data
