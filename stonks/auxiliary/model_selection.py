@@ -8,8 +8,13 @@ import xgboost
 sns.set()
 
 
-def fit_predict(X, y, model=None):
+def fit_predict(X, y, model=None, drop_minus_one=True):
     """Обучает модель и возвращает вероятности для тестовой выборки"""
+
+    if drop_minus_one:
+        X = X[y != -1]
+        y = y[y != -1]
+
     if model is None:
         model = LogisticRegression(n_jobs=-1, solver='lbfgs')
     x_train, x_test, y_train, y_test = train_test_split(X, y, shuffle=False, test_size=0.2)

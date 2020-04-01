@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import ta
 import logging
 import pandas as pd
-
+import os
 
 kline_id = 0
 
@@ -131,3 +131,64 @@ def basic_clean(data: pd.DataFrame):
     data.set_index('normal_time', inplace=True)
     data.drop(['id', 'time', 'currency_pair'], axis=1, inplace=True)
     return data
+
+
+def get_state_cpp(prices, mod=0.001, input_name='input.txt', output_name='output.txt'):
+    """Получение таргета через C++"""
+    with open(input_name, 'w') as file:
+        file.write(output_name + '\n')
+        file.write(str(len(prices)) + ' ')
+        file.write(str(mod) + '\n')
+        for price in prices:
+            file.write(str(price) + ' ')
+    file_name = "executable"
+    os.system(f'g++ -o {file_name} precount_extremums.cpp && ./executable')
+    file = open("./" + output_name, 'r')
+    target = eval(file.readline())
+    file.close()
+    os.system(f'rm {input_name} {output_name} {file_name}')
+    return target
+
+
+def count_some(orders, depth):
+    """Подсчет некоторых признаков на основе одной строки"""
+    orders['mid_price'] = (orders['depth_bid_price_1'] + orders['depth_ask_price_1']) / 2.
+
+    # Distance to midpoint
+    for col in orders.columns:
+        if ('quantity' in col) or (col == 'mid_price'):
+            continue
+        name = col.split('_')
+        orders['mid_distance_' + name[1] + '_' + name[3]] = orders[col] / orders['mid_price'] - 1.
+
+    # Cumulative notional value
+    orders['cumulative_ask_1'] = orders['depth_ask_price_1'] * orders['depth_ask_quantity_1']
+    orders['cumulative_bid_1'] = orders['depth_bid_price_1'] * orders['depth_bid_quantity_1']
+    for i in range(2, depth + 1):
+        orders['cumulative_ask_' + str(i)] = orders['depth_ask_price_' + str(i)] * \
+                                             orders['depth_ask_quantity_' + str(i)] + orders[
+                                                 'cumulative_ask_' + str(i - 1)]
+        orders['cumulative_bid_' + str(i)] = \
+            orders['depth_bid_price_' + str(i)] * orders['depth_bid_quantity_' + str(i)] + orders[
+                                                 'cumulative_bid_' + str(i - 1)]
+
+    # Notional imbalances
+    for i in range(1, depth + 1):
+        orders['imbalance_' + str(i)] = \
+            (orders['cumulative_ask_' + str(i)] - orders['cumulative_bid_' + str(i)]) / \
+            (orders['cumulative_ask_' + str(i)] + orders['cumulative_bid_' + str(i)])
+
+    # Spread
+    orders['spread'] = orders['depth_ask_price_1'] - orders['depth_bid_price_1']
+    return orders
+
+
+def construct_order_names(depth):
+    """Возвращает имена столбцов с ордерами"""
+    to_leave = [['depth_ask_price_' + str(i), 'depth_ask_quantity_' + str(i),
+                 'depth_bid_price_' + str(i), 'depth_bid_quantity_' + str(i)]
+                for i in range(1, depth + 1)]
+    lea = []
+    for el in to_leave:
+        lea += el
+    return lea
