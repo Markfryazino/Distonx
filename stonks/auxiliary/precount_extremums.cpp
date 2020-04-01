@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <cmath>
+#include <string>
 
 template<typename T>
 bool cmp(bool is_max, T a, T b) {
@@ -123,10 +124,12 @@ void make_slow_res(
 
 int main() {
     std::ifstream in;
-    in.open("input.txt");
+    in.open("./input.txt");
     std::vector<double> prices;
     int n;
     double mod;
+    std::string output_name;
+    in >> output_name;
     in >> n >> mod;
     prices.resize(n);
     for (int i = 0; i < n; ++i) {
@@ -146,7 +149,7 @@ int main() {
     make_res(ST_min, ST_max, prices, log, result, n, mod);
 
     std::ofstream out;
-    out.open("output.txt");
+    out.open("./" + output_name);
     out << "[";
     int cnt = 0;
     for (auto el : result) {

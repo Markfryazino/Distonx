@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import ta
 import logging
 import pandas as pd
+import os
 
 
 kline_id = 0
@@ -123,3 +124,23 @@ def plot_target(data):
     plt.figure(figsize=(15, 5))
     plt.plot(normal_time, target)
     plt.show(block=False)
+
+
+def preprocess_extremums(prices, mod, input_name, output_name):
+    with open(input_name, 'w') as file:
+        file.write(output_name + '\n')
+        file.write(str(len(prices)) + ' ')
+        file.write(str(mod) + '\n')
+        for price in prices:
+            file.write(str(price) + ' ')
+    file_name = "executable"
+    os.system(f'g++ -o {file_name} precount_extremums.cpp && ./executable')
+    file = open("./" + output_name, 'r')
+    target = eval(file.readline())
+    file.close()
+    os.system(f'rm {input_name} {output_name} {file_name}')
+    return target
+
+
+# EXAMPLE
+# print(preprocess_extremums([5, 3, 1, 2, 4, 2], 0.001, "input.txt", "output.txt"))
