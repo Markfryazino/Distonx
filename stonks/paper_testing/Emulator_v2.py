@@ -2,10 +2,10 @@
 
 # Класс эмулятора биржи, который обрабатывает запросы модели.
 class EmulatorV2:
-    def __init__(self, spend_till_end=True, pay_in_bnb=True):
+    def __init__(self, fee=0.001, spend_till_end=True, pay_in_bnb=True):
         self.spend_till_end = spend_till_end
         self.bnb_fee = 0.00075
-        self.fee = 0.001
+        self.fee = fee
         self.pay_in_bnb = pay_in_bnb
         self.balance = {}
         self.orders = {}
@@ -122,7 +122,7 @@ class EmulatorV2:
         self.orders = orders
         old_usdt = self.count_in_usdt()
 
-        for (pair, action, amount) in query.items():
+        for (action, amount) in query.items():
             delta_first = 0
             delta_second = 0
             if action == 'buy base':

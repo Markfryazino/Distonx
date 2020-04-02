@@ -44,7 +44,7 @@ def plot_predictions(X_test, y_test, target, probas, prob_up=0.5, prob_down=0.5)
     downs = probas['goes_up'] > prob_up
 
     plt.figure(figsize=(15, 5))
-    plt.plot(X_test.index, X_test['target'])
+    plt.plot(X_test.index, target)
     plt.scatter(X_test[y_test == 1].index, target[y_test == 1], color='g')
     plt.scatter(X_test[y_test == 0].index, target[y_test == 0], color='r')
     plt.show()
