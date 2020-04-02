@@ -36,12 +36,14 @@ class DB:
         return base_start + keys + ") VALUES (" + values + ");"
 
     def get_data_from_db(self, time_start, time_finish,
-                         pair_name='', pair_names = set()):  # возвращает тапл таплов. Один тапл = одна строчка в БД
+                         pair_name='', pair_names=None):  # возвращает тапл таплов. Один тапл = одна строчка в БД
+        if pair_names is None:
+            pair_names = set()
         if pair_names:
             tmp = '('
             count = len(pair_names)
             for pair_name in pair_names:
-                tmp += 'currency_pair = '+ '"' + pair_name + '"'
+                tmp += 'currency_pair = ' + '"' + pair_name + '"'
                 count -= 1
                 if count != 0:
                     tmp += ' OR '
@@ -73,11 +75,15 @@ class DB:
         ans = list([i[0] for i in self.cursor.fetchall()])
         return ans
 
-    def fetch_pandas(self, start, end, pair=''):
+    def fetch_pandas(self, start, end, pair_names=None):
+        if pair_names is None:
+            pair_names = set()
         names = self.get_columns_names()
-        data = self.get_data_from_db(start, end, pair_name=pair)
+        data = self.get_data_from_db(start, end, pair_names=pair_names)
         data = pd.DataFrame(data=data, columns=names)
         return data
 
-    def fetch_last(self, indent=3600, pair=''):
-        return self.fetch_pandas(time.time() - indent, time.time(), pair)
+    def fetch_last(self, indent=3600, pair_names=None):
+        if pair_names is None:
+            pair_names = set()
+        return self.fetch_pandas(time.time() - indent, time.time(), pair_names)

@@ -3,15 +3,16 @@ import pandas as pd
 from ..auxiliary.fitting import fit_supervised
 from ..auxiliary import split_to_pairs
 import joblib
+import logging
 import datetime
 import time
-from ..auxiliary.data_preprocessing import construct_order_names, count_some, basic_clean
+from ..auxiliary.data_preprocessing import basic_clean, make_x
 from ..DataCatcher.database_saver import DB
 
 
 # Модель 2 - эвристики + обучение с учителем (Бонни)
 class BonnieModel:
-    pairs_implemented = ['btcusdt']
+    pairs_implemented = ['btcusdt', 'bchusdt', 'ethusdt', 'bnbusdt']
 
     # Инициализация и загрузка модели
     def __init__(self):
@@ -26,7 +27,7 @@ class BonnieModel:
         self.db = DB()
         self.memory = {}
         for pair in BonnieModel.pairs_implemented:
-            self.memory[pair] = basic_clean(self.db.fetch_last(indent=3600, pair=pair))
+            self.memory[pair] = basic_clean(self.db.fetch_last(indent=3600, pair_names={pair}))
 
     def __call__(self, data, balance):
         for_one = balance['usdt'] / len(BonnieModel.pairs_implemented)
@@ -41,13 +42,11 @@ class BonnieModel:
             df = pd.DataFrame(cur, index=pd.Series([datetime.datetime.fromtimestamp(time.time())],
                                                    name='normal_data'))
             self.memory[pair] = self.memory[pair][1:].append(df)
+
             ok_cols = self.columns[pair]
             scaler = self.scalers[pair]
 
-            orders = df[construct_order_names(5)]
-            some = count_some(orders, 5)
-            some.drop(construct_order_names(5), axis=1, inplace=True)
-            some.drop('mid_price', axis=1, inplace=True)
+            some = make_x(self.memory[pair])
             df = pd.DataFrame(scaler.transform(some), index=some.index, columns=some.columns)
             df = df.reindex(columns=ok_cols)
 
@@ -68,6 +67,7 @@ class BonnieModel:
     @staticmethod
     def fit(data: pd.DataFrame):
         for pair in BonnieModel.pairs_implemented:
+            logging.debug('fitting ' + pair)
             semi_data = data[data['currency_pair'] == pair]
             model, cols, scaler = fit_supervised(semi_data, BonnieModel.current_model())
             joblib.dump(model, 'settings/Bonnie_settings/' + pair + '_model.joblib')

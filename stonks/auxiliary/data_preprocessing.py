@@ -50,16 +50,9 @@ def get_kline_info(data):
                                   'kline_high_price', 'kline_low_price', 'kline_close_price',
                                   'kline_base_volume')
 
-    data.drop(['kline_trade_number', 'kline_open_price', 'kline_open_price',
-               'kline_close_price', 'kline_high_price', 'kline_low_price',
-               'kline_base_volume', 'kline_quote_volume', 'kline_taker_base_volume',
-               'kline_taker_quote_volume', 'kline_time_since_update',
-               'kline_update_time'], axis=1, inplace=True)
-
-    feat.drop('kline_update_time', axis=1, inplace=True)
-    data = data.merge(feat, on='kline_id')
-    data.fillna(0, inplace=True)
-    return data
+    feat.drop(['kline_update_time', 'kline_open_price', 'kline_close_price',
+               'kline_high_price', 'kline_low_price'], axis=1, inplace=True)
+    return feat
 
 
 def get_state(data, mod=0.001):
@@ -126,27 +119,40 @@ def plot_state(data, res):
     plt.scatter(target[res == 0].index, target[res == 0], color='r')
 
 
-def make_x_y(df, mod=0.003, need_kline=True):
+def make_x_y(df, mod=0.003):
     """По сути, пайплайн обработки"""
-    if need_kline:
-        logging.debug('counting klines')
-        df = get_kline_info(df)
-        df.drop('kline_id', axis=1, inplace=True)
-    logging.debug('getting state')
+    logging.debug('getting X')
     df = basic_clean(df)
-    y = get_state(df, mod)
-    plot_state(df, y)
+    kli = get_kline_info(df)
+    orders = df[construct_order_names(5)]
+    some = count_some(orders, 5)
+    some.drop(construct_order_names(5), axis=1, inplace=True)
+    y = get_state_fast(some['mid_price'], mod)
+    some.drop('mid_price', axis=1, inplace=True)
+    klid = pd.DataFrame(df['kline_id']).join(kli, on='kline_id').drop('kline_id', axis=1)
+    x = pd.concat([klid, some], axis=1)
+    x.fillna(0., inplace=True)
+
+    logging.debug('getting y')
+    scaler = StandardScaler()
+    scaler.fit(x)
+    x = pd.DataFrame(scaler.transform(x), index=x.index, columns=x.columns)
+
+    x = x[y != -1]
+    y = y[y != -1]
+    return x, y, scaler
+
+
+def make_x(df):
+    kli = get_kline_info(df)
     orders = df[construct_order_names(5)]
     some = count_some(orders, 5)
     some.drop(construct_order_names(5), axis=1, inplace=True)
     some.drop('mid_price', axis=1, inplace=True)
-    scaler = StandardScaler()
-    scaler.fit(some)
-    some = pd.DataFrame(scaler.transform(some), index=some.index, columns=some.columns)
-
-    some = some[y != -1]
-    y = y[y != -1]
-    return some, y, scaler
+    klid = pd.DataFrame(df['kline_id']).join(kli, on='kline_id').drop('kline_id', axis=1)
+    x = pd.concat([klid, some], axis=1)
+    x.fillna(0., inplace=True)
+    return x
 
 
 def plot_target(data):
@@ -203,7 +209,7 @@ def count_some(orders, depth):
                                                  'cumulative_ask_' + str(i - 1)]
         orders['cumulative_bid_' + str(i)] = \
             orders['depth_bid_price_' + str(i)] * orders['depth_bid_quantity_' + str(i)] + orders[
-                                                 'cumulative_bid_' + str(i - 1)]
+                'cumulative_bid_' + str(i - 1)]
 
     # Notional imbalances
     for i in range(1, depth + 1):
