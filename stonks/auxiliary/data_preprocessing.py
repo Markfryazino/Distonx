@@ -7,7 +7,9 @@ import matplotlib.pyplot as plt
 import ta
 import logging
 import pandas as pd
-
+import os
+import heapq
+from sklearn.preprocessing import StandardScaler
 
 kline_id = 0
 
@@ -89,12 +91,36 @@ def get_state(data, mod=0.001):
     return res
 
 
+def get_state_fast(data, mod=0.001):
+    first_min = []
+    first_max = []
+    n = len(data)
+    result = [-1] * n
+    for i in range(n):
+        while len(first_min) > 0 and first_min[0][0] * (1 + mod) <= data[i]:
+            if result[first_min[0][1]] == -1:
+                result[first_min[0][1]] = 1
+            heapq.heappop(first_min)
+        while len(first_max) > 0 and -first_max[0][0] * (1 - mod) >= data[i]:
+            if result[first_max[0][1]] == -1:
+                result[first_max[0][1]] = 0
+            heapq.heappop(first_max)
+        while len(first_min) > 0 and result[first_min[0][1]] != -1:
+            heapq.heappop(first_min)
+        while len(first_max) > 0 and result[first_max[0][1]] != -1:
+            heapq.heappop(first_max)
+        heapq.heappush(first_min, (data[i], i))
+        heapq.heappush(first_max, (-data[i], i))
+    return result
+
+
 def plot_state(data, res):
     """Отрисовка label-а"""
     target = (data['depth_bid_price_1'] + data['depth_ask_price_1']) / 2.
-    data['normal_time'] = data['time'].apply(datetime.datetime.fromtimestamp)
-    target.index = data['normal_time']
-    res.index = data['normal_time']
+    if 'time' in data.columns:
+        data['normal_time'] = data['time'].apply(datetime.datetime.fromtimestamp)
+        target.index = data['normal_time']
+        res.index = data['normal_time']
     target.plot()
     plt.scatter(target[res == 1].index, target[res == 1], color='g')
     plt.scatter(target[res == 0].index, target[res == 0], color='r')
@@ -107,13 +133,20 @@ def make_x_y(df, mod=0.003, need_kline=True):
         df = get_kline_info(df)
         df.drop('kline_id', axis=1, inplace=True)
     logging.debug('getting state')
-    res = get_state(df, mod)
-    plot_state(df, res)
-    df.set_index('normal_time', inplace=True)
-    df.drop(['id', 'time', 'currency_pair'], axis=1, inplace=True)
-    df = df[res != -1]
-    res = res[res != -1]
-    return df, res
+    df = basic_clean(df)
+    y = get_state(df, mod)
+    plot_state(df, y)
+    orders = df[construct_order_names(5)]
+    some = count_some(orders, 5)
+    some.drop(construct_order_names(5), axis=1, inplace=True)
+    some.drop('mid_price', axis=1, inplace=True)
+    scaler = StandardScaler()
+    scaler.fit(some)
+    some = pd.DataFrame(scaler.transform(some), index=some.index, columns=some.columns)
+
+    some = some[y != -1]
+    y = y[y != -1]
+    return some, y, scaler
 
 
 def plot_target(data):
@@ -123,3 +156,73 @@ def plot_target(data):
     plt.figure(figsize=(15, 5))
     plt.plot(normal_time, target)
     plt.show(block=False)
+
+
+def basic_clean(data: pd.DataFrame):
+    """Индекс по времени + отбрасывание некоторых столбцов"""
+    data['normal_time'] = data['time'].apply(datetime.datetime.fromtimestamp)
+    data.set_index('normal_time', inplace=True)
+    data.drop(['id', 'time', 'currency_pair'], axis=1, inplace=True)
+    return data
+
+
+def get_state_cpp(prices, mod=0.001, input_name='input.txt', output_name='output.txt'):
+    """Получение таргета через C++"""
+    with open(input_name, 'w') as file:
+        file.write(output_name + '\n')
+        file.write(str(len(prices)) + ' ')
+        file.write(str(mod) + '\n')
+        for price in prices:
+            file.write(str(price) + ' ')
+    file_name = "executable"
+    os.system(f'g++ -o {file_name} precount_extremums.cpp && ./executable')
+    file = open("./" + output_name, 'r')
+    target = eval(file.readline())
+    file.close()
+    os.system(f'rm {input_name} {output_name} {file_name}')
+    return target
+
+
+def count_some(orders, depth):
+    """Подсчет некоторых признаков на основе одной строки"""
+    orders['mid_price'] = (orders['depth_bid_price_1'] + orders['depth_ask_price_1']) / 2.
+
+    # Distance to midpoint
+    for col in orders.columns:
+        if ('quantity' in col) or (col == 'mid_price'):
+            continue
+        name = col.split('_')
+        orders['mid_distance_' + name[1] + '_' + name[3]] = orders[col] / orders['mid_price'] - 1.
+
+    # Cumulative notional value
+    orders['cumulative_ask_1'] = orders['depth_ask_price_1'] * orders['depth_ask_quantity_1']
+    orders['cumulative_bid_1'] = orders['depth_bid_price_1'] * orders['depth_bid_quantity_1']
+    for i in range(2, depth + 1):
+        orders['cumulative_ask_' + str(i)] = orders['depth_ask_price_' + str(i)] * \
+                                             orders['depth_ask_quantity_' + str(i)] + orders[
+                                                 'cumulative_ask_' + str(i - 1)]
+        orders['cumulative_bid_' + str(i)] = \
+            orders['depth_bid_price_' + str(i)] * orders['depth_bid_quantity_' + str(i)] + orders[
+                                                 'cumulative_bid_' + str(i - 1)]
+
+    # Notional imbalances
+    for i in range(1, depth + 1):
+        orders['imbalance_' + str(i)] = \
+            (orders['cumulative_ask_' + str(i)] - orders['cumulative_bid_' + str(i)]) / \
+            (orders['cumulative_ask_' + str(i)] + orders['cumulative_bid_' + str(i)])
+
+    # Spread
+    orders['spread'] = orders['depth_ask_price_1'] - orders['depth_bid_price_1']
+    return orders
+
+
+def construct_order_names(depth):
+    """Возвращает имена столбцов с ордерами"""
+    to_leave = [['depth_ask_price_' + str(i), 'depth_ask_quantity_' + str(i),
+                 'depth_bid_price_' + str(i), 'depth_bid_quantity_' + str(i)]
+                for i in range(1, depth + 1)]
+    lea = []
+    for el in to_leave:
+        lea += el
+    return lea
+    
