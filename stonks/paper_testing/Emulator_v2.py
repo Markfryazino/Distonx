@@ -122,7 +122,7 @@ class EmulatorV2:
         self.orders = orders
         old_usdt = self.count_in_usdt()
 
-        for (action, amount) in query.items():
+        for (pair, action, amount) in query:
             delta_first = 0
             delta_second = 0
             if action == 'buy base':

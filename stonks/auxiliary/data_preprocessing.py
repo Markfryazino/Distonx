@@ -201,3 +201,11 @@ def construct_order_names(depth):
     for el in to_leave:
         lea += el
     return lea
+
+
+def rolling(data: pd.Series):
+    df = pd.DataFrame()
+    periods = ['5s', '15s', '30s', '1min', '5min']
+    for period in periods:
+        df['rolling_' + period] = data / data.rolling(period).mean()
+    return df

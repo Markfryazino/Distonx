@@ -4,7 +4,7 @@ from ..auxiliary.fitting import fit_supervised
 from ..auxiliary import split_to_pairs
 import joblib
 import time
-from ..auxiliary.data_preprocessing import construct_order_names, count_some, basic_clean
+from ..auxiliary.data_preprocessing import construct_order_names, count_some
 
 
 # Модель 2 - эвристики + обучение с учителем (Бонни)
@@ -21,11 +21,11 @@ class BonnieModel:
             self.columns[pair] = joblib.load('settings/Bonnie_settings/' + pair + '_columns.joblib')
             self.scalers[pair] = joblib.load('settings/Bonnie_settings/' + pair + '_scaler.joblib')
 
-    # TODO - ну как бы сделать
     def __call__(self, data, balance):
         for_one = balance['usdt'] / len(BonnieModel.pairs_implemented)
         dct = split_to_pairs(data)
-        query = {}
+        query = []
+        logs = []
         for pair in BonnieModel.pairs_implemented:
             cur = dct[pair].copy()
             cur = {key: float(val) for (key, val) in cur.items()}
@@ -46,10 +46,11 @@ class BonnieModel:
 
             prob_down, prob_up = self.models[pair].predict_proba(df)[0]
             if prob_up > 0.5:
-                query[pair] = ('sell quote', for_one)
-            elif prob_up > 0.5:
-                query[pair] = ('sell base', balance[pair[:3]])
-        return query
+                query.append((pair, 'sell quote', for_one))
+            elif prob_down > 0.5:
+                query.append((pair, 'sell base', balance[pair[:3]]))
+            logs.append((pair, prob_down, prob_up))
+        return query, logs
 
     # Эта функция возвращает класс модели (просто для гибкости)
     @staticmethod

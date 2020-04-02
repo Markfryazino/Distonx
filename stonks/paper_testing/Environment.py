@@ -39,11 +39,11 @@ class Environment:
 
     # Один тик
     def step(self, data):
-        query, balance = self.agent.form_query(data)
+        query, logs, balance = self.agent.form_query(data)
         emulator_response = self.emulator.handle(query, balance, self.form_orderbook())
         agent_response = self.agent.get_response(emulator_response)
 
-        step_params = {'query': query, 'emulator_response': emulator_response,
+        step_params = {'query': query, 'model_logs': logs, 'emulator_response': emulator_response,
                        'agent_response': agent_response, 'data': self.current_data}
 
         if self.logger is not None:

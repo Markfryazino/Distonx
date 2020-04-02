@@ -7,8 +7,8 @@ class Agent:
         self.model = model
 
     def form_query(self, data):
-        query = self.model(data, self.balance)
-        return query, self.balance
+        query, logs = self.model(data, self.balance)
+        return query, logs, self.balance
 
     def get_response(self, response):
         delta_balance = response['delta_balance']

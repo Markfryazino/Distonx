@@ -7,4 +7,4 @@ warnings.filterwarnings('ignore')
 
 #  paper_test_1(time=300.)
 #  test_emu()
-bonnie_test(time=36000.)
+bonnie_test(time=3600.)

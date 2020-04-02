@@ -24,13 +24,14 @@ class SparseLogger:
         self.data = []
 
     def step(self, step_params):
-        if step_params['query']:
-            logging.debug(str(time.time()))
+        if (step_params['query']) and (step_params['emulator_response']['delta_usdt']):
+            logging.debug(str(time.time()) + ' | ' + step_params['emulator_response']['new_usdt'])
         self.data.append((time.time(), step_params['query'],
                           step_params['emulator_response']['delta_balance'],
                           step_params['agent_response']['balance'],
                           step_params['emulator_response']['new_usdt'],
-                          step_params['emulator_response']['delta_usdt']))
+                          step_params['emulator_response']['delta_usdt'],
+                          step_params['model_logs']))
 
     def save(self):
         joblib.dump(self.data, 'trash/output.joblib')
