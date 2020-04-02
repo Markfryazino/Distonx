@@ -8,6 +8,7 @@ import ta
 import logging
 import pandas as pd
 import os
+import heapq
 
 kline_id = 0
 
@@ -87,6 +88,29 @@ def get_state(data, mod=0.001):
             res[target[start:start + period][upper > lower].index] = 0
             start += period
     return res
+
+
+def get_state_fast(data, mod=0.001):
+    first_min = []
+    first_max = []
+    n = len(data)
+    result = [-1] * n
+    for i in range(n):
+        while len(first_min) > 0 and first_min[0][0] * (1 + mod) <= data[i]:
+            if result[first_min[0][1]] == -1:
+                result[first_min[0][1]] = 1
+            heapq.heappop(first_min)
+        while len(first_max) > 0 and -first_max[0][0] * (1 - mod) >= data[i]:
+            if result[first_max[0][1]] == -1:
+                result[first_max[0][1]] = 0
+            heapq.heappop(first_max)
+        while len(first_min) > 0 and result[first_min[0][1]] != -1:
+            heapq.heappop(first_min)
+        while len(first_max) > 0 and result[first_max[0][1]] != -1:
+            heapq.heappop(first_max)
+        heapq.heappush(first_min, (data[i], i))
+        heapq.heappush(first_max, (-data[i], i))
+    return result
 
 
 def plot_state(data, res):
@@ -192,3 +216,4 @@ def construct_order_names(depth):
     for el in to_leave:
         lea += el
     return lea
+    
