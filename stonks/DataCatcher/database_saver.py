@@ -36,8 +36,20 @@ class DB:
         return base_start + keys + ") VALUES (" + values + ");"
 
     def get_data_from_db(self, time_start, time_finish,
-                         pair_name=''):  # возвращает тапл таплов. Один тапл = одна строчка в БД
-        if pair_name:
+                         pair_name='', pair_names = set()):  # возвращает тапл таплов. Один тапл = одна строчка в БД
+        if pair_names:
+            tmp = '('
+            count = len(pair_names)
+            for pair_name in pair_names:
+                tmp += 'currency_pair = '+ '"' + pair_name + '"'
+                count -= 1
+                if count != 0:
+                    tmp += ' OR '
+            tmp += ')'
+            request = 'SELECT * FROM `distonx` WHERE time >= ' + str(
+                time_start) + ' AND time < ' + str(
+                time_finish) + ' AND ' + tmp
+        elif pair_name:
             request = 'SELECT * FROM `distonx` WHERE time >= ' + str(
                 time_start) + ' AND time < ' + str(
                 time_finish) + ' AND currency_pair = ' + '"' + pair_name + '"'
