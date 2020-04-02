@@ -3,8 +3,10 @@ import pandas as pd
 from ..auxiliary.fitting import fit_supervised
 from ..auxiliary import split_to_pairs
 import joblib
+import datetime
 import time
-from ..auxiliary.data_preprocessing import construct_order_names, count_some
+from ..auxiliary.data_preprocessing import construct_order_names, count_some, basic_clean
+from ..DataCatcher.database_saver import DB
 
 
 # Модель 2 - эвристики + обучение с учителем (Бонни)
@@ -21,6 +23,11 @@ class BonnieModel:
             self.columns[pair] = joblib.load('settings/Bonnie_settings/' + pair + '_columns.joblib')
             self.scalers[pair] = joblib.load('settings/Bonnie_settings/' + pair + '_scaler.joblib')
 
+        self.db = DB()
+        self.memory = {}
+        for pair in BonnieModel.pairs_implemented:
+            self.memory[pair] = basic_clean(self.db.fetch_last(indent=3600, pair=pair))
+
     def __call__(self, data, balance):
         for_one = balance['usdt'] / len(BonnieModel.pairs_implemented)
         dct = split_to_pairs(data)
@@ -30,10 +37,10 @@ class BonnieModel:
             cur = dct[pair].copy()
             cur = {key: float(val) for (key, val) in cur.items()}
             cur['kline_time_since_update'] = time.time() * 1000 - cur['kline_update_time']
-            cur['target'] = (cur['depth_bid_price_1'] + cur['depth_ask_price_1']) / 2.
-            del cur['kline_update_time']
             cur = {key: [val] for key, val in cur.items()}
-            df = pd.DataFrame(cur)
+            df = pd.DataFrame(cur, index=pd.Series([datetime.datetime.fromtimestamp(time.time())],
+                                                   name='normal_data'))
+            self.memory[pair] = self.memory[pair][1:].append(df)
             ok_cols = self.columns[pair]
             scaler = self.scalers[pair]
 

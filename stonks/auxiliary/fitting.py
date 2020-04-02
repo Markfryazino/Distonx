@@ -22,9 +22,7 @@ def fit_supervised(data, model):
     plt.subplot(311)
     target = (data['depth_bid_price_1'] + data['depth_ask_price_1']) / 2.
     x, y, scaler = make_x_y(data, need_kline=False)
-    x_train, x_test, y_train, \
-                    y_test, tar_train, tar_test = train_test_split(x, y,
-                                                   target[x.index], shuffle=False, test_size=0.2)
+    x_train, x_test, y_train, y_test, = train_test_split(x, y, shuffle=False, test_size=0.2)
     logging.debug('data processed')
     model.fit(x_train, y_train)
     pred = model.predict(x_test)
@@ -38,11 +36,11 @@ def fit_supervised(data, model):
     downs = probas['minimum'] > 0.65
 
     plt.subplot(312)
-    plt.plot(x_test.index, tar_test)
-    plt.scatter(x_test[y_test == 1].index, tar_test[y_test == 1], color='g')
-    plt.scatter(x_test[y_test == 0].index, tar_test[y_test == 0], color='r')
+    plt.plot(x_test.index, target[x_test.index])
+    plt.scatter(x_test[y_test == 1].index, target[y_test == 1], color='g')
+    plt.scatter(x_test[y_test == 0].index, target[y_test == 0], color='r')
     plt.subplot(313)
-    plt.plot(x_test.index, tar_test)
-    plt.scatter(x_test[ups].index, tar_test[ups], color='r')
-    plt.scatter(x_test[downs].index, tar_test[downs], color='g')
+    plt.plot(x_test.index, target[x_test.index])
+    plt.scatter(x_test[ups].index, target[ups], color='r')
+    plt.scatter(x_test[downs].index, target[downs], color='g')
     return model, list(x.columns), scaler
