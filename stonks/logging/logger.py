@@ -1,4 +1,4 @@
-from ..DataCatcher import database_saver
+from stonks.DataCatcher import database_saver
 import time
 
 
@@ -9,10 +9,10 @@ class DealsLogger:
 
     def step(self, data, type='test', comment=''):
         req_dct = dict()
-        req_dct['time'] = time.time()
+        req_dct['time'] = str(time.time())
         for currency, balance in data['agent_response']['balance'].items():
-            req_dct['new_balance' + currency] = str(balance)
-        req_dct['balance'] = data['emulator_response']['new_usdt']
+            req_dct['new_balance_' + currency] = str(balance)
+        req_dct['new_balance'] = str(data['emulator_response']['new_usdt'])
         for pairname, doing, amount in data['query']:
             if doing == 'sell base':
                 req_dct[pairname] = str(-amount)
@@ -21,5 +21,5 @@ class DealsLogger:
         req_dct['type'] = type
         req_dct['comment'] = comment
         request = 'INSERT INTO `deals` (`' + '`, `'.join(req_dct.keys()) + \
-                  '`) VALUES (`' + "', '".join(req_dct.values()) + "')"
+                  "`) VALUES ('" + "', '".join(req_dct.values()) + "')"
         self.db.execute(request)

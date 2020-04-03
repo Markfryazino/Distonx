@@ -1,9 +1,9 @@
 from .stupid_model import ArianaModel
-from .write_all_logger import WriteAllLogger, SparseLogger
+from .write_all_logger import WriteAllLogger
 import logging
 from ..paper_testing import Agent, EmulatorV2, Environment
 from ..modeling import BonnieModel
-from ..paper_testing.logger import DealsLogger
+from stonks.logging.logger import DealsLogger
 
 
 # Тест с Арианой
@@ -43,4 +43,3 @@ def bonnie_test(start_balance=200., time=60.):
         env.start()
     except KeyboardInterrupt:
         logging.debug('Interruption')
-    logger.save()
