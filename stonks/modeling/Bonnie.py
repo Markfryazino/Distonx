@@ -53,8 +53,8 @@ class BonnieModel:
                 logging.info('that weird ta error happened')
                 joblib.dump(self.memory[pair], 'trash/ta_error.joblib')
                 continue
+            some = some[ok_cols]
             df = pd.DataFrame(scaler.transform(some), index=some.index, columns=some.columns)
-            df = df.reindex(columns=ok_cols)
 
             prob_down, prob_up = self.models[pair].predict_proba(df)[0]
             if prob_up > 0.5:
