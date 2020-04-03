@@ -128,6 +128,7 @@ def make_x_y(df, mod=0.003):
     some = count_some(orders, 5)
     some.drop(construct_order_names(5), axis=1, inplace=True)
     y = get_state_fast(some['mid_price'], mod)
+    some = pd.concat([some, rolling(some['mid_price'])], axis=1)
     some.drop('mid_price', axis=1, inplace=True)
     klid = pd.DataFrame(df['kline_id']).join(kli, on='kline_id').drop('kline_id', axis=1)
     x = pd.concat([klid, some], axis=1)
@@ -148,6 +149,7 @@ def make_x(df):
     orders = df[construct_order_names(5)]
     some = count_some(orders, 5)
     some.drop(construct_order_names(5), axis=1, inplace=True)
+    some = pd.concat([some, rolling(some['mid_price'])], axis=1)
     some.drop('mid_price', axis=1, inplace=True)
     klid = pd.DataFrame(df['kline_id']).join(kli, on='kline_id').drop('kline_id', axis=1)
     x = pd.concat([klid, some], axis=1)

@@ -1,11 +1,11 @@
-from stonks.DataCatcher import database_saver
+from ..DataCatcher.database_saver import DB
 import time
 
 
 # отслеживает баланс и сделки
 class DealsLogger:
     def __init__(self):
-        self.db = database_saver.DB()
+        self.db = DB()
 
     def step(self, data, type='test', comment=''):
         req_dct = dict()

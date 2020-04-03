@@ -46,7 +46,13 @@ class BonnieModel:
             ok_cols = self.columns[pair]
             scaler = self.scalers[pair]
 
-            some = make_x(self.memory[pair])
+            try:
+                copy = self.memory[pair].copy()
+                some = make_x(copy)
+            except IndexError:
+                logging.info('that weird ta error happened')
+                joblib.dump(self.memory[pair], 'trash/ta_error.joblib')
+                continue
             df = pd.DataFrame(scaler.transform(some), index=some.index, columns=some.columns)
             df = df.reindex(columns=ok_cols)
 
