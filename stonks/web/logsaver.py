@@ -7,9 +7,8 @@ class LogSaver:
         self.db = DB()
         self.db.execute('SHOW COLUMNS FROM deals;')
         self.COLUMN_NAMES = list([i[0] for i in self.db.cursor.fetchall()])
-        self.db.execute()
         self.db.execute('SELECT time FROM deals;')
-        self.TIMEZERO = int(self.db.cursor.fetchone())
+        self.TIMEZERO = int(self.db.cursor.fetchone()[0])
         self.cache = dict()
 
     #возвращает словарь {'time': [], 'balance': []}
@@ -50,7 +49,7 @@ class LogSaver:
 
     #возвращает словарь {'candle_time_start': [], 'amount': []}
     #period - продолжительность одной свечи, amount - количество сделок за этот промежуток
-    def GetDealsAmountDict(self, time_start = 0, time_finish= 0, type = None, pairname = '', period = 60):
+    def GetDealsAmountDict(self, time_start = 0, time_finish= int(time.time()), type = None, pairname = '', period = 60):
         data = dict()
         data['candle_time_start'] = []
         data['amount'] = []
