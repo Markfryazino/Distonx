@@ -14,12 +14,13 @@ class DealsLogger:
             req_dct['new_balance_' + currency] = str(balance)
         req_dct['new_balance'] = str(data['emulator_response']['new_usdt'])
         for pairname, doing, amount in data['query']:
-            if doing == 'sell base':
-                req_dct[pairname] = str(-amount)
-            else:
-                req_dct[pairname] = str(amount)
+            req_dct[pairname + '_query_value'] = str(amount)
+            req_dct[pairname + '_query_type'] = str(doing)
         req_dct['type'] = type
         req_dct['comment'] = comment
         request = 'INSERT INTO `deals` (`' + '`, `'.join(req_dct.keys()) + \
                   "`) VALUES ('" + "', '".join(req_dct.values()) + "')"
         self.db.execute(request)
+
+    def save(self):
+        pass
