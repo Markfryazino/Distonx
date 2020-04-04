@@ -83,6 +83,6 @@ class LogSaver:
         return self.db.cursor.fetchall()
 
 
-ls = LogSaver()
-print(ls.GetBalance())
-print(ls.GetDealsAmountDict())
+#  ls = LogSaver()
+#  print(ls.GetBalance())
+#  print(ls.GetDealsAmountDict())

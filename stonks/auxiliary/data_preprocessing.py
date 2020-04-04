@@ -120,7 +120,10 @@ def plot_state(data, res):
 
 
 def make_x_y(df, mod=0.003):
-    """По сути, пайплайн обработки"""
+    """
+    По сути, пайплайн обработки
+    Возвращает X, y, scaler
+    """
     logging.debug('getting X')
     df = basic_clean(df)
     kli = get_kline_info(df)
