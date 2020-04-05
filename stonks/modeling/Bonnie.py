@@ -38,6 +38,7 @@ class BonnieModel:
         logs = []
         shuffle(BonnieModel.pairs_implemented)
 
+        print(BonnieModel.pairs_implemented)
         for pair in BonnieModel.pairs_implemented:
             cur = dct[pair].copy()
             cur = {key: float(val) for (key, val) in cur.items()}
