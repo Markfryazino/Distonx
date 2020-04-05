@@ -135,7 +135,9 @@ def make_x_y(df, mod=0.003):
     some.drop('mid_price', axis=1, inplace=True)
     klid = pd.DataFrame(df['kline_id']).join(kli, on='kline_id').drop('kline_id', axis=1)
     x = pd.concat([klid, some], axis=1)
+    x.replace({np.inf: np.NaN, -np.inf: np.NaN}, inplace=True)
     x.fillna(0., inplace=True)
+
 
     logging.debug('getting y')
     scaler = StandardScaler()
@@ -156,6 +158,7 @@ def make_x(df):
     some.drop('mid_price', axis=1, inplace=True)
     klid = pd.DataFrame(df['kline_id']).join(kli, on='kline_id').drop('kline_id', axis=1)
     x = pd.concat([klid, some], axis=1)
+    x.replace({np.inf: np.NaN, -np.inf: np.NaN}, inplace=True)
     x.fillna(0., inplace=True)
     return x
 

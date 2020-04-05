@@ -1,5 +1,6 @@
 from stonks.auxiliary import fit_model
 from stonks.modeling import BonnieModel
+from stonks.DataCatcher import DB
 import time
 import logging
 import seaborn as sns
@@ -11,4 +12,11 @@ sns.set()
 
 logging.basicConfig(level='DEBUG')
 logging.getLogger('matplotlib').setLevel(logging.WARNING)
-fit_model(BonnieModel, time.time() - 604800, time.time(), set(BonnieModel.pairs_implemented))
+
+pairs = ['bchbnb', 'ltcbnb']
+
+dbase = DB()
+for pair in pairs:
+    BonnieModel.pairs_implemented = [pair]
+    fit_model(BonnieModel, time.time() - 3600 * 24 * 7, time.time(), set(BonnieModel.pairs_implemented),
+              dbase=dbase)
