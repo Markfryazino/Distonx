@@ -1,0 +1,12 @@
+flask
+flask_restful
+flask_jsonpify
+flask_cors
+python-binance
+sklearn
+IPython
+pymysql
+pandas
+matplotlib
+ta
+
