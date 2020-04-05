@@ -30,7 +30,7 @@ class GetBalance(Resource):
     def get(self):
         args = get_parser.parse_args()
         if args['time'] is None:
-            return {'message': 'u piece of shit where the fuck is my timestamp, you utter shitlord, you dufus, you uneducated walnut'}, 400
+            return {'message': 'No timestamp provided'}, 400
         return jsonify(
             {
                 'message': f'sending logs since {args["time"]}',
@@ -43,7 +43,7 @@ class GetDeals(Resource):
     def get(self):
         args = get_parser.parse_args()
         if args['time'] is None:
-            return {'message': 'u piece of shit where the fuck is my timestamp, you utter shitlord, you dufus, you uneducated walnut'}, 400
+            return {'message': 'No timestamp provided'}, 400
         return jsonify(
             {
                 'message': f'sending logs since {args["time"]}',
@@ -57,6 +57,8 @@ get_parser.add_argument('time')
 
 api.add_resource(GetBalance, '/api/balance')
 api.add_resource(GetDeals, '/api/deals')
+
+
 def StartServer():
     flask_thread = threading.Thread(
         target=app.run, kwargs={
