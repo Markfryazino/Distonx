@@ -1,5 +1,5 @@
 import pymysql
-import logging
+from absl import logging
 import pandas as pd
 from ..auxiliary import auth_db
 from ..auxiliary import split_to_pairs
@@ -7,6 +7,9 @@ import time
 
 
 class DB:
+    authorized = False
+    credentials = ()
+
     def __init__(self):
         address, login, password = auth_db()
         self.connection = pymysql.connect(address, login, password, 'cryptodata', autocommit=True)
@@ -16,7 +19,6 @@ class DB:
 
     def execute(self, command):
         self.cursor.execute(command)
-        #  print(self.cursor.fetchall())
 
     def push_data(self, dct):
         cur_time = dct['time']

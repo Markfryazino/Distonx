@@ -1,6 +1,6 @@
 from ..paper_testing.Emulator_v2 import EmulatorV2
 from ..paper_testing import Agent, Environment
-import logging
+from absl import logging
 from .write_all_logger import WriteAllLogger
 
 
