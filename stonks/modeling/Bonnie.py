@@ -1,13 +1,13 @@
 from sklearn.linear_model import LogisticRegression
 import pandas as pd
 from ..auxiliary.fitting import fit_supervised
+from ..auxiliary.data_preprocessing import basic_clean
 from ..auxiliary import split_to_pairs
 import joblib
 import logging
 import datetime
 import time
-from ..auxiliary.data_preprocessing import basic_clean, make_x
-from ..DataCatcher.database_saver import DB
+from ..auxiliary.data_preprocessing import make_x
 
 
 # Модель 2 - эвристики + обучение с учителем (Бонни)
@@ -15,7 +15,9 @@ class BonnieModel:
     pairs_implemented = ['btcusdt', 'bchusdt', 'ethusdt', 'bnbusdt']
 
     # Инициализация и загрузка модели
-    def __init__(self):
+    def __init__(self, time_=-1, indent=3600):
+        self.indent = indent
+        self.time_ = time_
         self.models = {}
         self.columns = {}
         self.scalers = {}
@@ -24,34 +26,23 @@ class BonnieModel:
             self.columns[pair] = joblib.load('settings/Bonnie_settings/' + pair + '_columns.joblib')
             self.scalers[pair] = joblib.load('settings/Bonnie_settings/' + pair + '_scaler.joblib')
 
-        self.db = DB()
-        self.memory = {}
-        for pair in BonnieModel.pairs_implemented:
-            self.memory[pair] = basic_clean(self.db.fetch_last(indent=3600, pair_names={pair}))
-
-    def __call__(self, data, balance):
+    def __call__(self, data, balance):  # Теперь data - список словарей, текущий момент - data.iloc[-1]
         for_one = balance['usdt'] / len(BonnieModel.pairs_implemented)
-        dct = split_to_pairs(data)
         query = []
         logs = []
+        memory = {}
         for pair in BonnieModel.pairs_implemented:
-            cur = dct[pair].copy()
-            cur = {key: float(val) for (key, val) in cur.items()}
-            cur['kline_time_since_update'] = time.time() * 1000 - cur['kline_update_time']
-            cur = {key: [val] for key, val in cur.items()}
-            df = pd.DataFrame(cur, index=pd.Series([datetime.datetime.fromtimestamp(time.time())],
-                                                   name='normal_data'))
-            self.memory[pair] = self.memory[pair][1:].append(df)
-
+            memory[pair] = basic_clean(data[pair].iloc[:-1])
+        for pair in BonnieModel.pairs_implemented:
             ok_cols = self.columns[pair]
             scaler = self.scalers[pair]
 
             try:
-                copy = self.memory[pair].copy()
+                copy = memory[pair].copy()
                 some = make_x(copy)
             except IndexError:
                 logging.info('that weird ta error happened')
-                joblib.dump(self.memory[pair], 'trash/ta_error.joblib')
+                joblib.dump(memory[pair], 'trash/ta_error.joblib')
                 continue
             some = some[ok_cols]
             df = pd.DataFrame(scaler.transform(some), index=some.index, columns=some.columns)
