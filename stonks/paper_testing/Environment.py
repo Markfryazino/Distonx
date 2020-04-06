@@ -1,7 +1,7 @@
 from ..DataCatcher import DataCatcher
 import multiprocessing
 import threading
-import logging
+from absl import logging
 import time
 
 

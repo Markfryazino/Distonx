@@ -5,7 +5,7 @@ import datetime
 import random
 import matplotlib.pyplot as plt
 import ta
-import logging
+from absl import logging
 import pandas as pd
 import os
 import heapq

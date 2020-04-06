@@ -1,4 +1,4 @@
-import logging
+from absl import logging
 import joblib
 import time
 

@@ -1,5 +1,5 @@
 import pymysql
-import logging
+from absl import logging
 import pandas as pd
 from ..auxiliary import auth_db
 from ..auxiliary import split_to_pairs

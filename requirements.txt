@@ -7,6 +7,8 @@ sklearn
 IPython
 pymysql
 pandas
+numpy
 matplotlib
 ta
-
+tensorflow
+absl
