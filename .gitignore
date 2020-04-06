@@ -1,1 +1,4 @@
 /settings/access_info.txt
+*__pycache__*
+.idea
+*.ipynb_checkpoints*

@@ -4,7 +4,7 @@ from binance.client import Client
 from binance.websockets import BinanceSocketManager 
 import time
 from ..auxiliary import auth_api
-import logging
+from absl import logging
 
 
 # Класс таймера, который срабатывает каждые N секунд (скопировал со stackoverflow)

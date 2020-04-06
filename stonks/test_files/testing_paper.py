@@ -1,6 +1,6 @@
 from .stupid_model import ArianaModel
 from .write_all_logger import WriteAllLogger, SparseLogger
-import logging
+from absl import logging
 from ..paper_testing import Agent, EmulatorV2, Environment
 from ..paper_testing.Environment_v2 import EnvHistorical, EnvRealTime
 from ..modeling import BonnieModel
@@ -38,6 +38,7 @@ def bonnie_test(start_balance=200., time=60.):
     model = BonnieModel()
     agent = Agent(balance, model)
     emulator = EmulatorV2()
+<<<<<<< HEAD
     logger = DealsLogger('Bonnie_test_LR')
     db = DB()
     env = EnvRealTime(agent, emulator, logger, time, db=db, period=1.)
@@ -63,6 +64,10 @@ def another_bonnie_test(start_balance=200., time=60.):
     logger = DealsLogger('Bonnie_test_LR')
     db = DB()
     env = EnvHistorical(agent, emulator, logger, db=db)
+=======
+    logger = DealsLogger('Bonnie_test_NN')
+    env = Environment(agent, emulator, logger, time, period=1.)
+>>>>>>> master
     try:
         env.start()
     except KeyboardInterrupt:

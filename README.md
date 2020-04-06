@@ -1,6 +1,7 @@
 # Distonx
-A chance for us to become billionaires.
 
-Plans are to build a deep reinforcement model capable of (almost) high-frequency cryptocurrency trading on Binance stock market. At the moment project is in development.
+This is an attempt to build a some kind of autonomous cryptocurrency trading bot that uses supervised and reinforcement learning for decision making. Trading is done on Binance cryptocurrency market via its API and [11 pairs](https://github.com/Markfryazino/Distonx/blob/master/settings/pairs.txt) are traded simultaneously.
 
-In old commits you can see key and password of our Binance API token and database. They're outdated, so don't try to exploit that.
+The implemented model uses a separate neural network predicting the movement of the rate for each pair. The training data was collected by ourselves and covers about a month.
+
+Currently in progress is building an environment for reinforcement learning model based on a Deep Q-Network.
