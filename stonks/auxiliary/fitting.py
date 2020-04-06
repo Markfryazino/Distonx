@@ -1,6 +1,6 @@
 from ..DataCatcher.database_saver import DB
 import pandas as pd
-import logging
+from absl import logging
 from .data_preprocessing import make_x_y
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split

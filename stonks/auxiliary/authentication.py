@@ -1,5 +1,6 @@
 from IPython import get_ipython
 from IPython.display import clear_output
+from stonks.DataCatcher import DB
 
 
 def is_notebook():
@@ -26,9 +27,14 @@ def auth_api(level='READ'):
 
 # Запрос пароля для базы данных
 def auth_db():
-    address = input('Enter server address: ')
-    login = input('Enter login: ')
-    password = input('Enter password: ')
+    if DB.authorized:
+        return DB.credentials
+    else:
+        address = input('Enter server address: ')
+        login = input('Enter login: ')
+        password = input('Enter password: ')
+        DB.authorized = True
+        DB.credentials = (address, login, password)
 
     if is_notebook():
         clear_output()

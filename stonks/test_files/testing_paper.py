@@ -1,6 +1,6 @@
 from .stupid_model import ArianaModel
 from .write_all_logger import WriteAllLogger, SparseLogger
-import logging
+from absl import logging
 from ..paper_testing import Agent, EmulatorV2, Environment
 from ..modeling import BonnieModel
 from stonks.logging.logger import DealsLogger
