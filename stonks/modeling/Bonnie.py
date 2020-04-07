@@ -31,13 +31,12 @@ class BonnieModel:
             self.scalers[pair] = joblib.load('settings/Bonnie_settings/' + pair + '_scaler.joblib')
 
     def __call__(self, data, balance):  # Теперь data - список словарей, текущий момент - data.iloc[-1]
-        for_one = balance['usdt'] / len(BonnieModel.pairs_implemented)
         query = []
         logs = []
         memory = {}
+        shuffle(BonnieModel.pairs_implemented)
         for pair in BonnieModel.pairs_implemented:
             memory[pair] = basic_clean(data[pair].iloc[:-1])
-        for pair in BonnieModel.pairs_implemented:
             ok_cols = self.columns[pair]
             scaler = self.scalers[pair]
 
