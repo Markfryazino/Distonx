@@ -38,8 +38,7 @@ def bonnie_test(start_balance=200., time=60.):
     model = BonnieModel()
     agent = Agent(balance, model)
     emulator = EmulatorV2()
-<<<<<<< HEAD
-    logger = DealsLogger('Bonnie_test_LR')
+    logger = DealsLogger('Bonnie_test_RealTime')
     db = DB()
     env = EnvRealTime(agent, emulator, logger, time, db=db, period=1.)
     try:
@@ -61,13 +60,9 @@ def another_bonnie_test(start_balance=200., time=60.):
     model = BonnieModel()
     agent = Agent(balance, model)
     emulator = EmulatorV2()
-    logger = DealsLogger('Bonnie_test_LR')
+    logger = DealsLogger('Bonnie_test_Hist')
     db = DB()
     env = EnvHistorical(agent, emulator, logger, db=db)
-=======
-    logger = DealsLogger('Bonnie_test_NN')
-    env = Environment(agent, emulator, logger, time, period=1.)
->>>>>>> master
     try:
         env.start()
     except KeyboardInterrupt:
