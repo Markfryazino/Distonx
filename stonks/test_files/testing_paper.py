@@ -8,7 +8,6 @@ from stonks.logging.logger import DealsLogger
 
 # Тест с Арианой
 def paper_test_1(start_balance=200., time=60.):
-    logging.basicConfig(level=logging.DEBUG)
 
     open("trash/Ariana_output.txt", "w").close()
     with open('settings/cryptos.txt') as file:
@@ -26,7 +25,6 @@ def paper_test_1(start_balance=200., time=60.):
 
 # Тест с Бонни
 def bonnie_test(start_balance=200., time=60.):
-    logging.basicConfig(level=logging.DEBUG)
 
     with open('settings/cryptos.txt') as file:
         cryptos = [a[:-1] for a in file.readlines()]
