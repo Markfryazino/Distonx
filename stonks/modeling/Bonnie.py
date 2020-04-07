@@ -1,13 +1,8 @@
 import pandas as pd
 from ..auxiliary.fitting import fit_supervised
-from ..auxiliary.data_preprocessing import basic_clean
-from ..auxiliary import split_to_pairs
 import joblib
 from absl import logging
-import datetime
-import time
 from ..auxiliary.data_preprocessing import basic_clean, make_x
-from ..DataCatcher.database_saver import DB
 import tensorflow as tf
 from random import shuffle
 
@@ -18,9 +13,7 @@ class BonnieModel:
         pairs_implemented = [a[:-1] for a in file.readlines()]
 
     # Инициализация и загрузка модели
-    def __init__(self, time_=-1, indent=3600):
-        self.indent = indent
-        self.time_ = time_
+    def __init__(self):
         self.models = {}
         self.columns = {}
         self.scalers = {}

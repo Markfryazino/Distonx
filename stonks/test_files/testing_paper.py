@@ -38,7 +38,7 @@ def bonnie_test(start_balance=200., time=60.):
     model = BonnieModel()
     agent = Agent(balance, model)
     emulator = EmulatorV2()
-    logger = DealsLogger('Bonnie_test_RealTime')
+    logger = DealsLogger('Bonnie_test_RealTime_1')
     db = DB()
     env = EnvRealTime(agent, emulator, logger, time, db=db, period=1.)
     try:
@@ -49,7 +49,7 @@ def bonnie_test(start_balance=200., time=60.):
 
 def another_bonnie_test(start_balance=200., time=60.):
 
-    logging.basicConfig(level=logging.DEBUG)
+    # logging.basicConfig(level=logging.DEBUG)
 
     with open('settings/cryptos.txt') as file:
         cryptos = [a[:-1] for a in file.readlines()]
@@ -60,7 +60,7 @@ def another_bonnie_test(start_balance=200., time=60.):
     model = BonnieModel()
     agent = Agent(balance, model)
     emulator = EmulatorV2()
-    logger = DealsLogger('Bonnie_test_Hist')
+    logger = DealsLogger('Bonnie_test_Hist_1')
     db = DB()
     env = EnvHistorical(agent, emulator, logger, db=db)
     try:
