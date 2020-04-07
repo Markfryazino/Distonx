@@ -2,7 +2,7 @@ import pandas as pd
 from ..auxiliary.fitting import fit_supervised
 from ..auxiliary import split_to_pairs
 import joblib
-import logging
+from absl import logging
 import datetime
 import time
 from ..auxiliary.data_preprocessing import basic_clean, make_x

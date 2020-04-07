@@ -8,7 +8,7 @@ from hashlib import md5
 from random import randint
 from ..web.logsaver import LogSaver
 import threading
-import logging
+from absl import logging
 
 
 # Initialize flask app and api
