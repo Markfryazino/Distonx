@@ -45,6 +45,5 @@ function updateData() {
                 }]
             );
         });
-    clearInterval(update_interval);
 }
 
