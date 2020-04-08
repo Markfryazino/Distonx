@@ -24,8 +24,10 @@ def StartServer():
     class GetBalance(Resource):
         def get(self):
             args = get_parser.parse_args()
-            if args['time'] is None:
-                return {'message': 'No timestamp provided'}, 400
+            if args['time_start'] is None:
+                return {'message': 'No period start time provided'}, 400
+            if args['time_finish'] is None:
+                return {'message': 'No period finish time provided'}, 400
             return jsonify(
                 {
                     'message': f'sending logs from {args["time_start"]} to {args["time_finish"]}',
@@ -36,18 +38,20 @@ def StartServer():
     class GetDeals(Resource):
         def get(self):
             args = get_parser.parse_args()
-            if args['time'] is None:
-                return {'message': 'No timestamp provided'}, 400
+            if args['time_start'] is None:
+                return {'message': 'No period start time provided'}, 400
+            if args['time_finish'] is None:
+                return {'message': 'No period finish time provided'}, 400
             return jsonify(
                 {
                     'message': f'sending logs from {args["time_start"]} to {args["time_finish"]}',
-                    'data': ls.GetDealsAmountDict()
+                    'data': ls.GetDealsAmountDict(time_start=args['time_start'], time_finish=args['time_finish'], period=1)
                 }
             )
 
     get_parser = reqparse.RequestParser()
-    get_parser.add_argument('time_start')
-    get_parser.add_argument('time_finish')
+    get_parser.add_argument('time_start', type=int)
+    get_parser.add_argument('time_finish', type=int)
 
     api.add_resource(GetBalance, '/api/balance')
     api.add_resource(GetDeals, '/api/deals')
