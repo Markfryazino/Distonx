@@ -1,9 +1,27 @@
 import pymysql
 from absl import logging
 import pandas as pd
-from ..auxiliary import auth_db
 from ..auxiliary import split_to_pairs
+from ..auxiliary.authentication import is_notebook
 import time
+from IPython.display import clear_output
+
+
+# Запрос пароля для базы данных
+def auth_db():
+    if DB.authorized:
+        return DB.credentials
+    else:
+        address = input('Enter server address: ')
+        login = input('Enter login: ')
+        password = input('Enter password: ')
+        DB.authorized = True
+        DB.credentials = (address, login, password)
+
+    if is_notebook():
+        clear_output()
+
+    return address, login, password
 
 
 class DB:
