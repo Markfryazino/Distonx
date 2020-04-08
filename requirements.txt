@@ -1,3 +1,4 @@
+joblib
 flask
 flask_restful
 flask_jsonpify

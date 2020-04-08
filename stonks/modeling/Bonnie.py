@@ -23,22 +23,21 @@ class BonnieModel:
             self.columns[pair] = joblib.load('settings/Bonnie_settings/' + pair + '_columns.joblib')
             self.scalers[pair] = joblib.load('settings/Bonnie_settings/' + pair + '_scaler.joblib')
 
-    def __call__(self, data, balance):  # Теперь data - список словарей, текущий момент - data.iloc[-1]
+    def __call__(self, data, balance):
         query = []
         logs = []
-        memory = {}
         shuffle(BonnieModel.pairs_implemented)
         for pair in BonnieModel.pairs_implemented:
-            memory[pair] = basic_clean(data[pair].iloc[:-1])
+            memory = basic_clean(data[pair])
             ok_cols = self.columns[pair]
             scaler = self.scalers[pair]
 
             try:
-                copy = memory[pair].copy()
+                copy = memory.copy()
                 some = make_x(copy)
             except IndexError:
                 logging.info('that weird ta error happened')
-                joblib.dump(memory[pair], 'trash/ta_error.joblib')
+                joblib.dump(memory, 'trash/ta_error.joblib')
                 continue
             some = some[ok_cols]
             df = pd.DataFrame(scaler.transform(some), index=some.index, columns=some.columns)

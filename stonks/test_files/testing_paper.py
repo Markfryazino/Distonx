@@ -2,10 +2,11 @@ from .stupid_model import ArianaModel
 from .write_all_logger import WriteAllLogger, SparseLogger
 from absl import logging
 from ..paper_testing import Agent, EmulatorV2, Environment
-from ..paper_testing.Environment_v2 import EnvHistorical, EnvRealTime
+from ..paper_testing.HistoricalEnvironment import HistoricalEnvironment, RealTimeEnvironment
 from ..modeling import BonnieModel
 from stonks.logging.logger import DealsLogger
 from ..DataCatcher.database_saver import DB
+
 
 # Тест с Арианой
 def paper_test_1(start_balance=200., time=60.):
@@ -40,7 +41,7 @@ def bonnie_test(start_balance=200., time=60.):
     emulator = EmulatorV2()
     logger = DealsLogger('Bonnie_test_RealTime_1')
     db = DB()
-    env = EnvRealTime(agent, emulator, logger, time, db=db, period=1.)
+    env = RealTimeEnvironment(agent, emulator, logger, time, db=db, period=1.)
     try:
         env.start()
     except KeyboardInterrupt:
@@ -61,8 +62,7 @@ def another_bonnie_test(start_balance=200., time=60.):
     agent = Agent(balance, model)
     emulator = EmulatorV2()
     logger = DealsLogger('Bonnie_test_Hist_1')
-    db = DB()
-    env = EnvHistorical(agent, emulator, logger, db=db)
+    env = HistoricalEnvironment(agent, emulator, logger)
     try:
         env.start()
     except KeyboardInterrupt:
