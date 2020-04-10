@@ -21,6 +21,18 @@ def get_id(x):
     return x * kline_id
 
 
+def simplified_klines(data):
+    kline_cols = []
+    for el in data.columns:
+        if 'kline_' in el:
+            kline_cols.append(el)
+    klines = data[kline_cols]
+    klines.drop('kline_update_time', axis=1, inplace=True)
+    klines['kline_delta'] = klines['kline_close_price'] - klines['kline_open_price']
+    klines['kline_volatility'] = klines['kline_high_price'] - klines['kline_low_price']
+    return klines
+
+
 def get_kline_info(data):
     """Возвращает датафрейм, в котором добавлены фичи свечей из ta. Но вообще, оно inplace (аккуратно)"""
     global kline_id
@@ -119,14 +131,20 @@ def plot_state(data, res):
     plt.scatter(target[res == 0].index, target[res == 0], color='r')
 
 
-def make_x_y(df, mod=0.003):
+def make_x_y(df, mod=0.003, scale=True, klines='ta'):
     """
     По сути, пайплайн обработки
     Возвращает X, y, scaler
     """
     logging.debug('getting X')
     df = basic_clean(df)
-    kli = get_kline_info(df)
+    if klines == 'ta':
+        kli = get_kline_info(df)
+    elif klines == 'simple':
+        kli = simplified_klines(df)
+    else:
+        raise NotImplementedError
+
     orders = df[construct_order_names(5)]
     some = count_some(orders, 5)
     some.drop(construct_order_names(5), axis=1, inplace=True)
@@ -138,11 +156,10 @@ def make_x_y(df, mod=0.003):
     x.replace({np.inf: np.NaN, -np.inf: np.NaN}, inplace=True)
     x.fillna(0., inplace=True)
 
-
-    logging.debug('getting y')
     scaler = StandardScaler()
-    scaler.fit(x)
-    x = pd.DataFrame(scaler.transform(x), index=x.index, columns=x.columns)
+    if scale:
+        scaler.fit(x)
+        x = pd.DataFrame(scaler.transform(x), index=x.index, columns=x.columns)
 
     x = x[y != -1]
     y = y[y != -1]

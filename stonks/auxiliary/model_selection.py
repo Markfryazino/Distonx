@@ -39,21 +39,21 @@ def get_importances(model: xgboost.XGBClassifier):
     return li
 
 
-def plot_predictions(X_test, y_test, target, probas, prob_up=0.5, prob_down=0.5):
+def plot_predictions(index, y_test, target, probas, prob_up=0.5, prob_down=0.5):
     """Отрисовывает предсказания модели"""
 
-    ups = probas['goes_down'] > prob_down
-    downs = probas['goes_up'] > prob_up
+    ups = (probas['goes_down'] > prob_down)[index]
+    downs = (probas['goes_up'] > prob_up)[index]
 
     plt.figure(figsize=(15, 5))
-    plt.plot(X_test.index, target)
-    plt.scatter(X_test[y_test == 1].index, target[y_test == 1], color='g')
-    plt.scatter(X_test[y_test == 0].index, target[y_test == 0], color='r')
+    plt.plot(index, target[index])
+    plt.scatter(index[y_test == 1], target[index][y_test == 1], color='g')
+    plt.scatter(index[y_test == 0], target[index][y_test == 0], color='r')
     plt.show()
     plt.figure(figsize=(15, 5))
-    plt.plot(X_test.index, target)
-    plt.scatter(X_test[ups].index, target[ups], color='r')
-    plt.scatter(X_test[downs].index, target[downs], color='g')
+    plt.plot(index, target[index])
+    plt.scatter(index[ups], target[ups], color='r')
+    plt.scatter(index[downs], target[downs], color='g')
 
 
 def approx_metric(target, state, start=100, com=0.999):
