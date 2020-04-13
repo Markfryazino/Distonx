@@ -1,7 +1,7 @@
 
 
 # Класс эмулятора биржи, который обрабатывает запросы модели.
-class EmulatorV2:
+class Emulator:
     def __init__(self, fee=0.001, spend_till_end=True, pay_in_bnb=True):
         self.spend_till_end = spend_till_end
         self.bnb_fee = 0.00075

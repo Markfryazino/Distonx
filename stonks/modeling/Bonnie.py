@@ -1,12 +1,8 @@
 import pandas as pd
 from ..auxiliary.fitting import fit_supervised
-from ..auxiliary import split_to_pairs
 import joblib
 from absl import logging
-import datetime
-import time
 from ..auxiliary.data_preprocessing import basic_clean, make_x
-from ..DataCatcher.database_saver import DB
 import tensorflow as tf
 from random import shuffle
 
@@ -27,36 +23,21 @@ class BonnieModel:
             self.columns[pair] = joblib.load('settings/Bonnie_settings/' + pair + '_columns.joblib')
             self.scalers[pair] = joblib.load('settings/Bonnie_settings/' + pair + '_scaler.joblib')
 
-        self.db = DB()
-        self.memory = {}
-        for pair in BonnieModel.pairs_implemented:
-            self.memory[pair] = basic_clean(self.db.fetch_last(indent=3600, pair_names={pair}))
-
     def __call__(self, data, balance):
-        dct = split_to_pairs(data)
         query = []
         logs = []
         shuffle(BonnieModel.pairs_implemented)
-
-        print(BonnieModel.pairs_implemented)
         for pair in BonnieModel.pairs_implemented:
-            cur = dct[pair].copy()
-            cur = {key: float(val) for (key, val) in cur.items()}
-            cur['kline_time_since_update'] = time.time() * 1000 - cur['kline_update_time']
-            cur = {key: [val] for key, val in cur.items()}
-            df = pd.DataFrame(cur, index=pd.Series([datetime.datetime.fromtimestamp(time.time())],
-                                                   name='normal_data'))
-            self.memory[pair] = self.memory[pair][1:].append(df)
-
+            memory = basic_clean(data[pair])
             ok_cols = self.columns[pair]
             scaler = self.scalers[pair]
 
             try:
-                copy = self.memory[pair].copy()
+                copy = memory.copy()
                 some = make_x(copy)
             except IndexError:
                 logging.info('that weird ta error happened')
-                joblib.dump(self.memory[pair], 'trash/ta_error.joblib')
+                joblib.dump(memory, 'trash/ta_error.joblib')
                 continue
             some = some[ok_cols]
             df = pd.DataFrame(scaler.transform(some), index=some.index, columns=some.columns)

@@ -1,7 +1,4 @@
-from ..paper_testing.Emulator_v2 import EmulatorV2
-from ..paper_testing import Agent, Environment
-from absl import logging
-from .write_all_logger import WriteAllLogger
+from ..paper_testing.Emulator import Emulator
 
 
 # ничего особенного, просто функция для тестирования эмулятора.
@@ -20,7 +17,7 @@ def test_emu():
     balance['btc'] = 3.
     balance['ltc'] = 0
     query = {'btcusdt': ('sell base', 0.5)}
-    emulator = EmulatorV2()
+    emulator = Emulator()
     # emulator.fee = 0.
     response = emulator.handle(query, balance, orderbook1)
     print(response)
