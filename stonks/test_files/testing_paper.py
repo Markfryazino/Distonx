@@ -1,5 +1,5 @@
 from .stupid_model import ArianaModel
-from .write_all_logger import WriteAllLogger, SparseLogger
+from .write_all_logger import WriteAllLogger
 from absl import logging
 from ..paper_testing import Agent, Emulator
 from ..paper_testing.HistoricalEnvironment import HistoricalEnvironment
