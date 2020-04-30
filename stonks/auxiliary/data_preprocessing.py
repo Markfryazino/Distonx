@@ -264,14 +264,3 @@ def rolling(data: pd.Series):
     for period in periods:
         df['rolling_' + period] = data / data.rolling(period).mean()
     return df
-
-
-def form_orderbook(current_data, pairs):
-    orderbook = {pair: {'bids': [], 'asks': []} for pair in pairs}
-    for pair in pairs:
-        for i in range(20):
-            for side in ('bid', 'ask'):
-                price = float(current_data[pair][f'depth_{side}_price_{i + 1}'])
-                quantity = float(current_data[pair][f'depth_{side}_quantity_{i + 1}'])
-                orderbook[pair][side + 's'].append([price, quantity])
-    return orderbook

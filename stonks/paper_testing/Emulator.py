@@ -2,7 +2,7 @@
 
 # Класс эмулятора биржи, который обрабатывает запросы модели.
 class Emulator:
-    def __init__(self, fee=0.001, spend_till_end=True, pay_in_bnb=True):
+    def __init__(self, fee=0.001, spend_till_end=True, pay_in_bnb=True, string_start=''):
         self.spend_till_end = spend_till_end
         self.bnb_fee = 0.00075
         self.fee = fee
@@ -10,11 +10,11 @@ class Emulator:
         self.balance = {}
         self.orders = {}
 
-        with open('settings/cryptos.txt') as file:
+        with open(string_start + 'settings/cryptos.txt') as file:
             self.cryptos = file.readlines()
         self.cryptos = [el[:-1] for el in self.cryptos]
 
-        with open('settings/min_order_size_and_step.txt', 'r') as f:
+        with open(string_start + 'settings/min_order_size_and_step.txt', 'r') as f:
             self.min_order_size = eval(f.read())
 
     # Подсчет стоимости текущего кошелька в долларах

@@ -1,17 +1,19 @@
 import stonks.auxiliary.data_preprocessing as dp
 from tf_agents.specs import array_spec
 from tf_agents.environments import py_environment
+import tf_agents.trajectories.time_step as ts
 import numpy as np
 from ..DataCatcher import DB
 from sklearn.preprocessing import StandardScaler
 import datetime
 import joblib
+import time
 import pandas as pd
 
 
 class LearningEnvironment(py_environment.PyEnvironment):
-    def __init__(self, emulator, logger=None, start_time=1581434096, test_time=3600,
-                 indent=3600, period=1., reset=True):
+    def __init__(self, emulator, balance, logger=None, start_time=1581434096, test_time=12 * 3600,
+                 indent=3600, period=1., reset=True, string_start='', orderbook_depth=5):
         super().__init__()
         self.db = DB()
         self.emulator = emulator
@@ -26,15 +28,30 @@ class LearningEnvironment(py_environment.PyEnvironment):
         self.somes = {}
         self.times = {}
         self.current_time = start_time
-        with open('settings/pairs.txt') as file:
+        self.agent_balance = balance
+        self.orderbook_depth = orderbook_depth
+
+        assert len(balance) == 6, 'А почему баланс всего из 6 валют?'
+
+        with open(string_start + 'settings/pairs.txt') as file:
             self.pairs = [a[:-1] for a in file.readlines()]
+        with open(string_start + 'settings/cryptos.txt') as file:
+            self.assets = [a[:-1] for a in file.readlines()]
+
+        n = self.orderbook_depth
+        memory_columns = [f'depth_ask_price_{i + 1}' for i in range(n)] + \
+                         [f'depth_bid_price_{i + 1}' for i in range(n)] + \
+                         [f'depth_ask_quantity_{i + 1}' for i in range(n)] + \
+                         [f'depth_bid_quantity_{i + 1}' for i in range(n)]
+
 
         for pair in self.pairs:
             self.memory[pair] = self.db.fetch_pandas(start=start_time - indent,
                                                      end=start_time + test_time, pair_names={pair})
-            self.times[pair] = self.memory[pair]['time']
+            self.times[pair] = self.memory[pair]['time'].copy()
             self.times[pair].index = self.times[pair].apply(datetime.datetime.fromtimestamp)
-            data = dp.basic_clean(self.memory[pair])
+            self.memory[pair].index = self.memory[pair]['time'].apply(datetime.datetime.fromtimestamp)
+            data = dp.basic_clean(self.memory[pair].copy())
             copy = data.copy()
             some = dp.make_x(copy)
             self.times[pair] = self.times[pair][some.index]
@@ -51,14 +68,15 @@ class LearningEnvironment(py_environment.PyEnvironment):
                 scaler = StandardScaler()
                 ok_cols = list(some.columns)
                 scaler.fit(some)
-                joblib.dump(ok_cols, 'settings/Env_settings/' + pair + '_columns.joblib')
-                joblib.dump(scaler, 'settings/Env_settings/' + pair + '_scaler.joblib')
+                joblib.dump(ok_cols, string_start + 'settings/Env_settings/' + pair + '_columns.joblib')
+                joblib.dump(scaler, string_start + 'settings/Env_settings/' + pair + '_scaler.joblib')
             else:
-                scaler = joblib.load('settings/Env_settings/' + pair + '_scaler.joblib')
-                ok_cols = joblib.load('settings/Env_settings/' + pair + '_columns.joblib')
+                scaler = joblib.load(string_start + 'settings/Env_settings/' + pair + '_scaler.joblib')
+                ok_cols = joblib.load(string_start + 'settings/Env_settings/' + pair + '_columns.joblib')
                 some = some[ok_cols]
 
             some = some.loc[common_index]
+            self.memory[pair] = self.memory[pair].loc[common_index][memory_columns]
             self.data[pair] = scaler.transform(some)
 
         time = self.time.reset_index(drop=True)
@@ -75,9 +93,9 @@ class LearningEnvironment(py_environment.PyEnvironment):
 
         del self.times, self.somes
 
-        self._action_spec = array_spec.BoundedArraySpec(shape=(), dtype=np.int32, minimum=0, maximum=12,
+        self._action_spec = array_spec.BoundedArraySpec(shape=(), dtype=np.int32, minimum=0, maximum=22,
                                                         name='action')
-        self._observation_spec = array_spec.ArraySpec(shape=(indent, 11 * 109 + 11), dtype=np.float64,
+        self._observation_spec = array_spec.ArraySpec(shape=(11 * 109 + 6,), dtype=np.float64,
                                                       name='observation')
         self._episode_ended = False
 
@@ -90,16 +108,58 @@ class LearningEnvironment(py_environment.PyEnvironment):
     def _reset(self):
         self._episode_ended = False
         self.current_time = self.start_time
+        return ts.restart(self.form_observation())
 
     def get_current(self):
-        idx = self.time_to_id[self.current_time]
-        return {pair: self.data[pair].iloc[idx] for pair in self.pairs}
+        idx = self.time_to_id.loc[self.current_time]
+        return {pair: self.data[pair][idx] for pair in self.pairs}
+
+    def form_observation(self):
+        cur_data = self.get_current()
+        npbalance = np.array([self.agent_balance[asset] for asset in self.assets])
+        return np.hstack([cur_data[pair].T.reshape(109,) for pair in self.pairs] + [npbalance])
+
+    def form_orderbook(self):
+        orderbook = {pair: {'bids': [], 'asks': []} for pair in self.pairs}
+        idx = self.time_to_id.loc[self.current_time]
+        for pair in self.pairs:
+            mem = self.memory[pair].iloc[idx]
+            for i in range(self.orderbook_depth):
+                for side in ('bid', 'ask'):
+                    price = float(mem[f'depth_{side}_price_{i + 1}'])
+                    quantity = float(mem[f'depth_{side}_quantity_{i + 1}'])
+                    orderbook[pair][side + 's'].append([price, quantity + 5e6])
+        return orderbook
 
     def _step(self, action):
+
         if self._episode_ended:
             return self.reset()
 
-        current = self.get_current()
         query = []
+        if action != 22:
+            pair = self.pairs[action // 2]
+            sell_base = action % 2
+            if sell_base:
+                query.append((pair, 'sell base', self.agent_balance[pair[:3]] * 0.25))
+            else:
+                query.append((pair, 'sell quote', self.agent_balance[pair[3:]] * 0.25))
 
+        orderbook = self.form_orderbook()
 
+        result = self.emulator.handle(query, self.agent_balance, orderbook)
+
+        for key, val in result['delta_balance'].items():
+            self.agent_balance[key] += val
+        reward = result['new_usdt']
+
+        self.current_time += self.period
+        if self.current_time >= self.start_time + self.test_time - self.period:
+            self._episode_ended = True
+
+        observation = self.form_observation()
+
+        if self._episode_ended:
+            return ts.termination(observation, reward)
+        else:
+            return ts.transition(observation, reward)
