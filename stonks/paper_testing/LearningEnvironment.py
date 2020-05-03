@@ -106,6 +106,9 @@ class LearningEnvironment(py_environment.PyEnvironment):
                                                       name='observation')
         self._episode_ended = False
 
+        init_handle = self.emulator.handle([], self.agent_balance, self.form_orderbook())
+        self.history = [(self.current_time, init_handle['new_usdt'])]
+
     def action_spec(self):
         return self._action_spec
 
@@ -117,6 +120,7 @@ class LearningEnvironment(py_environment.PyEnvironment):
         self.current_time = self.start_time
         self.agent_balance = self.start_balance.copy()
         self.max_balance = self.start_balance.copy()
+        self.history = [self.history[0]]
         return ts.restart(self.form_observation())
 
     def get_current(self):
@@ -168,9 +172,10 @@ class LearningEnvironment(py_environment.PyEnvironment):
             if val > 0:
                 self.max_balance[key] = self.agent_balance[key]
         if self.return_type == 'delta':
-            reward = result['delta_usdt']
+            reward = result['new_usdt'] - self.history[-1][1]
         else:
             reward = result['new_usdt']
+        self.history.append((self.current_time, result['new_usdt']))
 
         self.current_time += self.period
         if self.current_time >= self.start_time + self.test_time - self.period:
