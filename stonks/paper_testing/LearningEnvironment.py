@@ -14,8 +14,8 @@ import pandas as pd
 class LearningEnvironment(py_environment.PyEnvironment):
     def __init__(self, emulator, balance, logger=None, start_time=1581434096, test_time=12 * 3600,
                  indent=3600, period=1., reset=True, string_start='', orderbook_depth=5,
-                 action_ratio=0.25,
-                 return_type='delta'):
+                 action_ratio=0.25, return_type='delta', pair_list=None,
+                 asset_list=None):
         super().__init__()
         self.action_ratio = action_ratio
         self.db = DB()
@@ -35,14 +35,24 @@ class LearningEnvironment(py_environment.PyEnvironment):
         self.agent_balance = balance.copy()
         self.start_balance = balance.copy()
         self.max_balance = balance.copy()
+        self.currency_number = len(balance)
         self.orderbook_depth = orderbook_depth
 
-        assert len(balance) == 6, 'А почему баланс всего из 6 валют?'
+        if pair_list is None:
+            with open(string_start + 'settings/pairs.txt') as file:
+                self.pairs = [a[:-1] for a in file.readlines()]
+            self.pair_number = 11
+        else:
+            self.pairs = pair_list.copy()
+            self.pair_number = len(self.pairs)
 
-        with open(string_start + 'settings/pairs.txt') as file:
-            self.pairs = [a[:-1] for a in file.readlines()]
-        with open(string_start + 'settings/cryptos.txt') as file:
-            self.assets = [a[:-1] for a in file.readlines()]
+        if asset_list is None:
+            with open(string_start + 'settings/cryptos.txt') as file:
+                self.assets = [a[:-1] for a in file.readlines()]
+        else:
+            self.assets = asset_list.copy()
+
+        assert len(self.agent_balance) == len(self.assets), 'Эй друг, что за махинации ты проворачиваешь?'
 
         n = self.orderbook_depth
 
@@ -100,9 +110,10 @@ class LearningEnvironment(py_environment.PyEnvironment):
 
         del self.times, self.somes
 
-        self._action_spec = array_spec.BoundedArraySpec(shape=(), dtype=np.int32, minimum=0, maximum=22,
-                                                        name='action')
-        self._observation_spec = array_spec.ArraySpec(shape=(11 * 109 + 6,), dtype=np.float64,
+        self._action_spec = array_spec.BoundedArraySpec(shape=(), dtype=np.int32, minimum=0,
+                                                        maximum=self.pair_number * 2, name='action')
+        obs_shape = self.pair_number * 109 + self.currency_number
+        self._observation_spec = array_spec.ArraySpec(shape=(obs_shape,), dtype=np.float64,
                                                       name='observation')
         self._episode_ended = False
 
@@ -153,7 +164,7 @@ class LearningEnvironment(py_environment.PyEnvironment):
             return self.reset()
 
         query = []
-        if action != 22:
+        if action != 2 * self.pair_number:
             pair = self.pairs[action // 2]
             sell_base = action % 2
             if sell_base:
